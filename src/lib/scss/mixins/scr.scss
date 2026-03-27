@@ -1,0 +1,39 @@
+@use "$lib/env";
+
+@mixin desktop {
+  @media (min-width: env.$desktop-width) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: env.$desktop-width-xl) {
+    @content;
+  }
+}
+
+
+@mixin tablet-and-higher {
+  @media (min-width: env.$tablet-width) {
+    @content;
+  }
+}
+
+@mixin tablet-and-lower {
+  @media (max-width: env.$desktop-width - 1px) {
+    @content;
+  }
+}
+
+
+@mixin tablet {
+  @media (min-width: env.$tablet-width) and (max-width: env.$desktop-width - 1px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: env.$tablet-width - 1px) {
+    @content;
+  }
+}

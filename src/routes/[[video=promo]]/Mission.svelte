@@ -1,0 +1,44 @@
+<section id="mission">
+  <h2>Миссия проекта</h2>
+  <p>
+    Фестиваль «Первые в космосе» — национальный гастрономический проект, который объединяет космическую отрасль и современную гастрономию.<br>
+    Через специальные блюда и авторские сеты шеф-повара предлагают новый взгляд на историю освоения космоса. Их вдохновляют орбитальные экспедиции, научные открытия и символы космической эпохи.<br>
+    Космос выходит за пределы лабораторий и космодромов и становится частью современной городской культуры: встреч, разговоров и гастрономических впечатлений.
+  </p>
+</section>
+
+<style lang="scss">
+  @use "$lib/scss/mixins/scr";
+
+  h2 {
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  p {
+    font-size: 13px;
+    max-width: 308px;
+    color: var(--text-color-bright-bg);
+    line-height: 16px;
+
+    @include scr.desktop {
+      width: 423px;
+      margin-bottom: 0;
+
+      color: #FFFFFF;
+      font-size: 13px;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+  }
+
+  @include scr.desktop {
+    section {
+      position: fixed;
+      top: calc(233px + var(--delta-y));
+      left: 513px;
+      width: 324px;
+    }
+  }
+</style>
