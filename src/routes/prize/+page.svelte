@@ -2,11 +2,11 @@
   import bgMobile from "./assets/bg_top.png?enhanced&format=webp"
   import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
 
-  import {tabletWidth} from "$lib/_env"
-  import Button from "$lib/components/Button/Button.svelte"
+  import {desktopWidth} from "$lib/_env"
   import Sections from "./Sections.svelte"
   import Souz from "./Souz/Souz.svelte"
   import {getContext} from "svelte"
+  import MainPrize from "./MainPrize.svelte"
 
   const config = getContext('layout-config')
   config.darkHeader = false
@@ -14,8 +14,8 @@
 
 <svelte:head>
   <title>Три шага к космодрому</title>
-  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {tabletWidth}">
-  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {tabletWidth}">
+  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {desktopWidth}">
+  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {desktopWidth}">
 </svelte:head>
 
 <div
@@ -24,33 +24,16 @@
     style:--bg-mobile="url('{bgMobile.img.src}')"
 >
   <main>
-    <section id="main_prize">
-      <div class="content">
-        <h1>ГЛАВНЫЙ ПРИЗ</h1>
-        <p>
-          Главный приз фестиваля — поездка на космодром Байконур.<br>
-          <br>
-          Победитель увидит пилотируемый запуск космического корабля «Союз МС-29», который отправится к Международной космической станции.<br>
-          <br>
-          Это один из самых впечатляющих моментов современной космонавтики — старт ракеты и начало космической экспедиции.
-        </p>
-
-        <h2>СЛЕДУЮЩАЯ ОСТАНОВКА — БАЙКОНУР</h2>
-        <p>
-          Закажите фестивальный сет.<br>
-          Получите открытку с номером.<br>
-          Зарегистрируйте его на сайте.<br>
-          И, возможно, именно вы окажетесь на старте космического корабля.
-        </p>
-
-        <div class="btn_restaurants">
-          <Button href="/restaurants">Выбрать ресторан</Button>
-        </div>
-      </div>
-    </section>
+    <MainPrize />
 
     <section id="three-steps-to-cosmodrome">
-      <div class="circle"></div>
+      <div class="circle">
+        <a href="#main_prize">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 3.75C16.7861 3.75 13.6443 4.70305 10.972 6.48862C8.29969 8.27419 6.21689 10.8121 4.98696 13.7814C3.75704 16.7507 3.43524 20.018 4.06225 23.1702C4.68926 26.3224 6.23692 29.2179 8.50952 31.4905C10.7821 33.7631 13.6776 35.3107 16.8298 35.9378C19.982 36.5648 23.2493 36.243 26.2186 35.013C29.1879 33.7831 31.7258 31.7003 33.5114 29.028C35.297 26.3557 36.25 23.2139 36.25 20C36.2455 15.6916 34.5319 11.561 31.4855 8.51454C28.439 5.46806 24.3084 3.75455 20 3.75ZM20 33.75C17.2805 33.75 14.6221 32.9436 12.3609 31.4327C10.0997 29.9218 8.33737 27.7744 7.29666 25.2619C6.25596 22.7494 5.98366 19.9847 6.51421 17.3175C7.04476 14.6503 8.35432 12.2003 10.2773 10.2773C12.2003 8.35431 14.6503 7.04475 17.3175 6.5142C19.9848 5.98366 22.7494 6.25595 25.2619 7.29666C27.7744 8.33736 29.9218 10.0997 31.4327 12.3609C32.9436 14.6221 33.75 17.2805 33.75 20C33.7459 23.6455 32.2959 27.1404 29.7182 29.7182C27.1404 32.2959 23.6455 33.7459 20 33.75ZM23.3844 14.6344L18.0172 20L23.3844 25.3656C23.5005 25.4818 23.5926 25.6196 23.6555 25.7714C23.7184 25.9231 23.7507 26.0858 23.7507 26.25C23.7507 26.4142 23.7184 26.5769 23.6555 26.7286C23.5926 26.8804 23.5005 27.0182 23.3844 27.1344C23.2682 27.2505 23.1304 27.3426 22.9786 27.4055C22.8269 27.4683 22.6643 27.5007 22.5 27.5007C22.3358 27.5007 22.1731 27.4683 22.0214 27.4055C21.8696 27.3426 21.7318 27.2505 21.6156 27.1344L15.3656 20.8844C15.2494 20.7683 15.1572 20.6304 15.0943 20.4787C15.0314 20.3269 14.999 20.1643 14.999 20C14.999 19.8357 15.0314 19.6731 15.0943 19.5213C15.1572 19.3696 15.2494 19.2317 15.3656 19.1156L21.6156 12.8656C21.7318 12.7495 21.8696 12.6574 22.0214 12.5945C22.1731 12.5317 22.3358 12.4993 22.5 12.4993C22.6643 12.4993 22.8269 12.5317 22.9786 12.5945C23.1304 12.6574 23.2682 12.7495 23.3844 12.8656C23.5005 12.9818 23.5926 13.1196 23.6555 13.2714C23.7184 13.4231 23.7507 13.5858 23.7507 13.75C23.7507 13.9142 23.7184 14.0769 23.6555 14.2286C23.5926 14.3804 23.5005 14.5182 23.3844 14.6344Z" fill="white"/>
+          </svg>
+        </a>
+      </div>
       <div class="content">
         <h2>ТРИ ШАГА К КОСМОДРОМУ</h2>
         <p>Все зарегистрированные участники автоматически принимают участие в розыгрыше поездки на запуск ракеты.</p>
@@ -70,44 +53,25 @@
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .wrapper {
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: #FFF;
 
-    @media (max-width: env.$tablet-width) {
+    @include scr.tablet-and-lower {
       background-image: var(--bg-mobile);
     }
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       background-image: var(--bg-desktop);
     }
   }
 
   main {
-    color: var(--text-color-dark-bg);
-
     padding-top: calc(389px - calc(375px - 100vw));
-  }
-
-  #main_prize {
-    background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, rgba(247, 248, 248, 0.6) 60px, #FFF 90px);
-
-    padding-top: 135px;
-    margin-top: 30px;
-
-    color: #1C212B;
-    padding-bottom: 93px;
-
-    h2 {
-      margin-top: 24px;
-    }
-    .content {
-      max-width: 282px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    color: var(--text-color-dark-bg);
   }
 
   #three-steps-to-cosmodrome {
@@ -120,6 +84,41 @@
 
     @media (min-width: 450px) {
       --circle-offset: 35px;
+    }
+
+    @media (min-width: 550px) {
+      --circle-offset: 55px;
+
+      margin-top: 30px;
+    }
+
+    @media (min-width: 750px) {
+      margin-bottom: -30px;
+    }
+
+    @media (min-width: 850px) {
+      --circle-offset: 85px;
+
+      margin-top: 100px;
+    }
+
+    @include scr.desktop {
+      --circle-offset: 160px;
+      position: absolute;
+      top: 0;
+      left: calc(100% + 120px);
+      z-index: 2;
+      background: none;
+      margin: 0;
+      padding: 37px 0;
+
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+
+      :global .sections-wrapper {
+        flex-grow: 1;
+      }
     }
 
     .content {
@@ -138,12 +137,31 @@
       left: 0;
       bottom: calc(var(--circle-offset) * -1);
       right: 0;
-      z-index: 1;
 
       overflow: hidden;
 
       margin-top: calc(var(--circle-offset) * -1);
-      margin-bottom: calc(var(--circle-offset) * -1);
+      margin-bottom: calc(var(--circle-offset) * -2);
+
+      @include scr.tablet-and-lower {
+        svg {
+          display: none;
+        }
+      }
+
+      svg {
+        position: absolute;
+        left: 60%;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+
+      @include scr.desktop {
+        left: -900px;
+        overflow: hidden;
+        width: 100vh;
+      }
 
       &::before {
         content: '';
@@ -155,6 +173,11 @@
         aspect-ratio: 1 / 1;
         background-color: #1C212B;
         border-radius: 100%;
+
+        @include scr.desktop {
+          transform: translateX(0);
+          background: linear-gradient(90deg, #1C212B 300px, transparent 500px);
+        }
       }
     }
   }
@@ -170,23 +193,19 @@
       color: #828A9D;
     }
   }
-  h1, h2 {
+
+  h2 {
     font-size: 24px;
     font-weight: 400;
     letter-spacing: -3%;
 
-    @media (min-width: env.$tablet-width) {
-      font-size: 36px;
-    }
-  }
-
-  .btn_restaurants {
-    margin-top: 34px;
-  }
-
-  h2 {
     line-height: 40px;
     margin: 0;
+
+    @include scr.desktop {
+      font-size: 24px;
+      line-height: 44px;
+    }
   }
 
   p {
@@ -195,8 +214,8 @@
     line-height: 16px;
     margin-bottom: 0;
 
-    @media (min-width: env.$tablet-width) {
-      font-size: 19.5px;
+    @include scr.desktop {
+      font-size: 13.5px;
       margin-bottom: 2em;
     }
   }

@@ -22,6 +22,7 @@
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .sections-wrapper {
     position: relative;
@@ -33,15 +34,22 @@
     align-items: center;
     padding: 32px;
 
-    @media (max-width: env.$mobile-width) {
+    @include scr.tablet-and-lower {
       margin-left: auto;
       margin-right: auto;
     }
+
+    @include scr.desktop {
+      padding-top: 0;
+    }
   }
 
-  section + section {
-    margin-top: 15px;
+  @include scr.tablet-and-lower {
+    section + section {
+      margin-top: 15px;
+    }
   }
+
   .click-area {
     opacity: 0;
     position: absolute;
@@ -55,6 +63,12 @@
 
   .sections {
     flex-grow: 1;
+
+    @include scr.desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content:  space-between;
+    }
   }
 
   .order {

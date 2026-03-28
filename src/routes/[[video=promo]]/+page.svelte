@@ -46,7 +46,7 @@
 
 <!-- Entrance Animation -->
 {#if !$animationStore.animationEnded}
-<!--  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>-->
+  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>
 {/if}
 
 <div
@@ -67,7 +67,7 @@
 
       <div class="actions">
         <Button dark filled href="/restaurants">Выбрать ресторан</Button>
-        <Button dark filled href="/prize">Участвовать в розыгрыше</Button>
+        <Button dark filled href="/prize#main_prize">Участвовать в розыгрыше</Button>
         <Button dark filled href="/promo">
           <span>Видеоролик</span>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -12,12 +12,12 @@
   import Sber from "$lib/components/_logos/Sber.svelte"
   import Inkerman from "$lib/components/_logos/Inkerman.svelte"
   import GastronomyInstitute from "$lib/components/_logos/GastronomyInstitute.svelte"
-  import {tabletWidth} from "$lib/_env"
+  import {desktopWidth, tabletWidth} from "$lib/_env"
 </script>
 
 <svelte:head>
-  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {tabletWidth}">
-  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {tabletWidth}">
+  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {desktopWidth}">
+  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {desktopWidth}">
 </svelte:head>
 
 <section
@@ -55,6 +55,7 @@
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .wrapper {
     position: relative;
@@ -63,11 +64,11 @@
     padding-bottom: 227px;
     height: 908px;
 
-    @media (max-width: env.$tablet-width) {
+    @include scr.tablet-and-lower {
       background-image: var(--bg-mobile);
     }
 
-    @media (min-width: env.$desktop-width) {
+    @include scr.desktop {
       background-image: var(--bg-desktop);
       position: fixed;
       left: 0;
@@ -81,8 +82,17 @@
   .content {
     position: relative;
     padding-top: 184px;
-    @media (min-width: env.$desktop-width) {
+
+    @include scr.desktop {
       padding-top: 20vh;
+    }
+
+    @media (min-width: 750px) {
+      padding-top: 250px;
+    }
+
+    @media (min-width: 850px) {
+      padding-top: 300px;
     }
   }
 
@@ -92,7 +102,7 @@
     text-align: center;
     margin-top: 140px;
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       font-size: 32px;
     }
 
@@ -111,11 +121,11 @@
     margin-left: auto;
     margin-right: auto;
 
-    @media (max-width: env.$mobile-width) {
+    @include scr.tablet-and-lower {
       justify-content: center;
     }
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       gap: 16px;
       max-width: 700px;
     }
@@ -160,10 +170,10 @@
     bottom: -2px;
     left: 0;
 
-
-    @media (min-width:  env.$tablet-width) {
+    @include scr.desktop {
       bottom: -6px;
     }
+
     width: 100%;
 
     background-size: 100%;
@@ -177,7 +187,7 @@
       margin-right: auto;
       max-height: 20vh;
 
-      @media (max-width:  env.$tablet-width) {
+      @include scr.tablet-and-lower {
         width: 100%;
         height: auto;
       }

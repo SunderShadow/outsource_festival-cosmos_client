@@ -44,6 +44,7 @@
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .number {
     position: relative;
@@ -57,7 +58,13 @@
     align-items: center;
     background: #1C212B;
 
-    @media (min-width: env.$desktop-width) {
+    @media (min-width: 650px) {
+      width: 84px;
+      height: 84px;
+      font-size: 42px;
+    }
+
+    @include scr.desktop {
       font-size: 42px;
       width: 84px;
       height: 84px;

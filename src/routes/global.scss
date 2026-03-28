@@ -1,3 +1,5 @@
+@use "$lib/scss/mixins/scr";
+
 @font-face {
   src: url("/fonts/Manrope/Manrope.ttf");
   font-family: "Manrope";
@@ -21,7 +23,7 @@ html {
   background: #000;
   scroll-behavior: smooth;
 
-  @media (min-width: 826px) {
+  @include scr.desktop {
     height: 100vh;
     overflow: hidden;
   }
