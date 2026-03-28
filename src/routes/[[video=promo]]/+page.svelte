@@ -17,6 +17,7 @@
   import FirstInCosmos from "./FirstInCosmos.svelte"
   import Partners from "./Partners.svelte"
   import Mission from "./Mission.svelte"
+  import Actions from "./Actions.svelte"
 
   const config = getContext('layout-config')
 
@@ -46,7 +47,7 @@
 
 <!-- Entrance Animation -->
 {#if !$animationStore.animationEnded}
-  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>
+<!--  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>-->
 {/if}
 
 <div
@@ -65,26 +66,17 @@
     <div class="content-wrapper">
       <FirstInCosmos />
 
-      <div class="actions">
-        <Button dark filled href="/restaurants">Выбрать ресторан</Button>
-        <Button dark filled href="/prize#main_prize">Участвовать в розыгрыше</Button>
-        <Button dark filled href="/promo">
-          <span>Видеоролик</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22Z" stroke="white" stroke-linejoin="round"/>
-            <path d="M10 12.0001V8.53613L13 10.2681L16 12.0001L13 13.7321L10 15.4641V12.0001Z" stroke="white" stroke-linejoin="round"/>
-          </svg>
+      <div class="desktop-transform">
+        <Actions />
 
-        </Button>
+        <hr>
+
+        <Mission />
+
+        <hr>
+
+        <Partners />
       </div>
-
-      <hr>
-
-      <Mission />
-
-      <hr>
-
-      <Partners />
     </div>
   </main>
 </div>
@@ -121,6 +113,10 @@
     border: none;
     margin-top: 24px;
     margin-bottom: 24px;
+
+    @include scr.desktop {
+      display: none;
+    }
   }
 
   p {
@@ -154,7 +150,7 @@
     }
 
     @media (max-height: 824px) {
-      --delta-y: -200px;
+      --delta-y: -150px;
     }
 
     width: 100%;
@@ -193,68 +189,13 @@
     }
   }
 
-  .actions {
-    margin-top: 16px;
-
-    :global .button {
-      display: flex;
-      max-width: fit-content;
-      height: 46px;
-      box-sizing: border-box;
-
-      &:last-child {
-        line-height: 75%;
-      }
-    }
-
+  .desktop-transform {
+    display: contents;
     @include scr.desktop {
+      width: 720px;
+      display: block;
       position: fixed;
       top: calc(550px + var(--delta-y));
-      display: flex;
-      flex-wrap: wrap;
-      width: 328px;
-      gap: 16px;
-
-      justify-content: space-between;
-      left: 158px;
-
-      :global .button {
-        &:first-child {
-          width: 136px;
-          text-wrap: nowrap;
-          font-size: 10px;
-        }
-
-        &:nth-child(2) {
-          width: 176px;
-          text-wrap: nowrap;
-          font-size: 10px;
-        }
-
-        &:last-child {
-          flex-grow: 1;
-          max-width: 100%;
-          justify-content: space-between;
-        }
-
-        &:not(:hover) {
-          background-color: transparent;
-        }
-
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        --btn-color: #fff;
-
-        font-size: 12px;
-      }
-    }
-
-    @include scr.tablet-and-lower {
-      :global .button + .button {
-        margin-top: 12px;
-      }
     }
   }
 

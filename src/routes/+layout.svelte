@@ -180,7 +180,7 @@
 
       @include scr.desktop {
         z-index: calc(var(--header-z-index) + 1);
-        padding-top: var(--stepper-desktop-top-offset);
+        margin-top: var(--stepper-desktop-top-offset);
         top: 0;
         left: 20px;
         transform: none;

@@ -10,7 +10,7 @@
   import SocialLinks from "$lib/components/SocailLinks/SocialLinks.svelte"
   import {tabletWidth} from "$lib/_env"
 
-  import Partners from "../[[video=promo]]/Partners.svelte"
+  import Partners from "./Partners.svelte"
   import {getContext} from "svelte"
 
   const config = getContext('layout-config')
@@ -53,7 +53,6 @@
     Фестиваль «Первые в космосе» объединяет рестораны, шеф-поваров и города по всей стране.
     Если вы хотите стать частью следующего фестиваля и представить свой космический гастрономический сет, оставьте заявку на участие.
   </p>
-
 
   <div class="footer">
     <Partners />

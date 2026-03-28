@@ -51,10 +51,6 @@
     z-index: var(--header-z-index);
 
     :global svg {
-      @media (min-width: env.$desktop-width) {
-        margin-left: auto;
-      }
-
       *[fill] {
         fill: #FFF;
         transition: fill 300ms, stroke 300ms;
@@ -69,7 +65,7 @@
   button {
     all: unset;
 
-    @media (min-width: env.$desktop-width) {
+    @include scr.desktop {
       display: none;
     }
   }

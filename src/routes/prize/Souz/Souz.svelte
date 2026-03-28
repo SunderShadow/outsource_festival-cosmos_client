@@ -83,16 +83,16 @@
     position: relative;
     padding-top: 184px;
 
-    @include scr.desktop {
-      padding-top: 20vh;
-    }
-
     @media (min-width: 750px) {
       padding-top: 250px;
     }
 
     @media (min-width: 850px) {
       padding-top: 300px;
+    }
+
+    @include scr.desktop {
+      padding-top: 20vh;
     }
   }
 

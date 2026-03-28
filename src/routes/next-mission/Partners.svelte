@@ -8,7 +8,6 @@
   import GastronomyInstitute from "$lib/components/_logos/GastronomyInstitute.svelte"
   import ProstoCosmos from "$lib/components/_logos/ProstoCosmos.svelte"
   import Divider from "$lib/components/Divider.svelte"
-  import ActionsDesktop from "./ActionsDesktop.svelte"
 </script>
 
 <section id="partners">
@@ -30,9 +29,6 @@
     <div class="sisoev"><Sisoev /></div>
   </div>
 
-  <div class="actions">
-    <ActionsDesktop />
-  </div>
   <hr>
 
   <div class="phone">
@@ -88,11 +84,6 @@
     margin-bottom: 18px;
   }
 
-  .actions {
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
   .additional_info {
     display: flex;
     justify-content: space-between;
