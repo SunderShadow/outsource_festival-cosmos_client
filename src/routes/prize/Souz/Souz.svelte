@@ -67,16 +67,6 @@
     @include scr.tablet-and-lower {
       background-image: var(--bg-mobile);
     }
-
-    @include scr.desktop {
-      background-image: var(--bg-desktop);
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      height: auto;
-    }
   }
 
   .content {
@@ -89,10 +79,6 @@
 
     @media (min-width: 850px) {
       padding-top: 300px;
-    }
-
-    @include scr.desktop {
-      padding-top: 20vh;
     }
   }
 

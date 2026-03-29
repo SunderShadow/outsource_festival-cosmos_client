@@ -4,7 +4,6 @@
 
   import EntranceAnimation from "./+page/EntranceAnimation.svelte"
 
-  import Button from "$lib/components/Button/Button.svelte"
   import {desktopWidth, tabletWidth} from "$lib/_env"
 
   import {store as animationStore} from "$lib/store/entrance_animation"
@@ -17,7 +16,6 @@
   import FirstInCosmos from "./FirstInCosmos.svelte"
   import Partners from "./Partners.svelte"
   import Mission from "./Mission.svelte"
-  import Actions from "./Actions.svelte"
 
   const config = getContext('layout-config')
 
@@ -30,6 +28,8 @@
 
   let showPromo = $derived(!!page.params.video)
   let videoSrc = $state.raw()
+
+  let wrapperEl = $state.raw()
   onMount(() => {
     if (window.innerWidth > tabletWidth) {
       videoSrc = videoDesktop
@@ -47,10 +47,11 @@
 
 <!-- Entrance Animation -->
 {#if !$animationStore.animationEnded}
-  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>
+<!--  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>-->
 {/if}
 
 <div
+    bind:this={wrapperEl}
   class="page-wrapper"
   style:--bg-desktop="url('{bgDesktop.img.src}')"
   style:--bg-mobile="url('{bgMobile.img.src}')"
@@ -64,19 +65,17 @@
 
   <main>
     <div class="content-wrapper">
-      <FirstInCosmos />
-
-      <div class="desktop-transform">
-        <Actions />
+      <div class="inline-desktop">
+        <FirstInCosmos />
 
         <hr>
 
         <Mission />
-
-        <hr>
-
-        <Partners />
       </div>
+
+      <hr>
+
+      <Partners />
     </div>
   </main>
 </div>
@@ -84,6 +83,13 @@
 <style lang="scss">
   @use "$lib/scss/mixins/scr";
   @use "$lib/env";
+
+  @include scr.desktop {
+    .inline-desktop {
+      display: flex;
+      gap: 24px;
+    }
+  }
 
   .promo-wrapper {
     position: fixed;
@@ -154,7 +160,7 @@
     }
 
     width: 100%;
-    height: 100svh;
+    min-height: 100svh;
 
     background-size: 100%;
     background-repeat: no-repeat;
@@ -175,22 +181,26 @@
   .content-wrapper {
     @include scr.tablet-and-lower {
       margin-top: 90px;
-      max-width: 308px;
+      max-width: 500px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    @include scr.desktop {
-      position: fixed;
-      top: var(--stepper-desktop-top-offset);
-      left: calc(var(--stepper-desktop-width) + 36px);
+    @include scr.mobile {
+      width: 308px;
+    }
 
+    @include scr.desktop {
+      max-width: 718px;
+      margin-top: 142px;
+      margin-left: 136px;
       color: #FFFFFF;
     }
   }
 
   .desktop-transform {
     display: contents;
+
     @include scr.desktop {
       width: 720px;
       display: block;

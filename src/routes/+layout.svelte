@@ -4,7 +4,6 @@
       duration: 300,
       css: (t: number) => {
         return `
-          position: absolute;
           top: 0;
           left: 0;
           width: 100%;
@@ -21,7 +20,7 @@
       duration: 300,
       css: (t: number, u: number) => {
         return `
-          position: absolute;
+          position: fixed;
           top: 0;
           left: 0;
           width: 100%;
@@ -37,7 +36,7 @@
   import "./env.scss"
   import "./global.scss"
   import Stepper from "$lib/components/Stepper/Stepper.svelte"
-  import {onMount, setContext} from "svelte"
+  import {onMount, setContext, tick} from "svelte"
   import {page} from "$app/state"
 
   import {detect as detectSwipe} from '$lib/tools/swipe-detect'
@@ -45,6 +44,8 @@
   import {afterNavigate, beforeNavigate} from "$app/navigation"
   import {store as animationStore} from "$lib/store/entrance_animation"
   import steps from "./stepper"
+  import client_type from "$lib/store/client_type"
+  import Lenis from "lenis"
 
   animationStore.set({
     animationEnded: page.url.pathname !== '/'
@@ -58,32 +59,58 @@
   let toPreviousSection: Function = $state(() => {})
 
   let canChangePageByWheel = $state.raw(false)
+  let canGoPrevPage = $state.raw(false)
+  let canGoNextPage = $state.raw(false)
+  // @ts-ignore
+  let wrapperEl: HTMLDivElement = $state.raw()
 
-  onMount(() => {
-    window.addEventListener('wheel', (e) => {
+  let lenis: Lenis
+
+  function bindLenis() {
+    lenis = new Lenis({
+      autoRaf: true,
+      wrapper: wrapperEl,
+      duration: 1,
+    })
+
+    lenis.on('virtual-scroll', (e) => {
+      if (canChangePageByWheel) {
+        if (canGoNextPage && e.deltaY > 0) {
+          toNextSection()
+        }
+
+        if (canGoPrevPage && e.deltaY < 0) {
+          toPreviousSection()
+        }
+      }
+    })
+
+    lenis.on('scroll', (e) => {
       if (!canChangePageByWheel) {
         return
       }
 
-      if (e.deltaY > 0) {
-        toNextSection()
-      } else if (e.deltaY < 0) {
-        toPreviousSection()
-      }
+      canGoNextPage = e.scroll === lenis.limit;
+      canGoPrevPage = e.scroll === 0;
     })
+  }
+  onMount(() => {
+    bindLenis()
 
-    detectSwipe(document.body, (direction: 'left' | 'right' | 'up' | 'down') => {
-      if (config.noChangeOnSwipe) {
-        return
-      }
+    if ($client_type.isMobile) {
+      detectSwipe(document.body, (direction: 'left' | 'right' | 'up' | 'down') => {
+        if (config.noChangeOnSwipe) {
+          return
+        }
 
-      if (direction === 'left') {
-        toNextSection()
-      }
-      if (direction === 'right') {
-        toPreviousSection()
-      }
-    })
+        if (direction === 'left') {
+          toNextSection()
+        }
+        if (direction === 'right') {
+          toPreviousSection()
+        }
+      })
+    }
   })
 
   const darkPages = [
@@ -100,14 +127,29 @@
     [new RegExp('/news'), new RegExp('\/news\/*')]
   ]
 
-  afterNavigate(() => {
+  function lenisResize() {
     setTimeout(() => {
+      lenis.resize()
       canChangePageByWheel = true
-    }, 300)
+
+      canGoPrevPage = true
+      if (lenis.limit === 0) {
+        canGoNextPage = true
+      }
+    }, 500)
+  }
+
+  afterNavigate(() => {
+    tick().then(() => {
+      lenisResize()
+    })
   })
 
   beforeNavigate((navigation) => {
     canChangePageByWheel = false
+    canGoPrevPage = false
+    canGoNextPage = false
+
     for (const pages of noReloadingPages) {
       let pageFromIsNoReloadOne = false
       let pageToIsNoReloadOne = false
@@ -137,7 +179,8 @@
   const darkParts = $derived(darkPages.includes(page.url.pathname))
   let config = $state({
     noChangeOnSwipe: false,
-    darkHeader: false
+    darkHeader: false,
+    lenis
   })
 
   setContext('layout-config', config)
@@ -145,17 +188,18 @@
 
 <Header dark={darkParts || config.darkHeader}/>
 
-<div class="wrapper">
-  <div class="stepper">
-    <Stepper
-        dark={darkParts}
-        {steps}
-        activeHref={page.url.pathname}
+<div class="stepper">
+  <Stepper
+      dark={darkParts}
+      {steps}
+      activeHref={page.url.pathname}
 
-        bind:toNext={toNextSection}
-        bind:toPrevious={toPreviousSection}
-    />
-  </div>
+      bind:toNext={toNextSection}
+      bind:toPrevious={toPreviousSection}
+  />
+</div>
+
+<div class="wrapper" bind:this={wrapperEl}>
   {#key currentPagePath}
     <div in:showPage out:hidePage>
       {@render children()}
@@ -168,24 +212,30 @@
   @use "$lib/scss/mixins/scr";
 
   .wrapper {
-    display: contents;
+    height: 100vh;
+    overflow: auto;
 
-    > .stepper {
-      position: absolute;
-      top: 122px;
-      width: 100%;
-      transform: translateX(-12px);
-      z-index: var(--stepper-z-index);
-      overflow: hidden;
+    &:-webkit-scrollbar {
+      display: none;
+    }
+  }
 
-      @include scr.desktop {
-        z-index: calc(var(--header-z-index) + 1);
-        margin-top: var(--stepper-desktop-top-offset);
-        top: 0;
-        left: 20px;
-        transform: none;
-        width: var(--stepper-desktop-width);
-      }
+  .stepper {
+    position: absolute;
+    top: 122px;
+    width: 100%;
+    transform: translateX(-12px);
+    z-index: var(--stepper-z-index);
+    overflow: hidden;
+
+    @include scr.desktop {
+      z-index: calc(var(--header-z-index) + 1);
+      margin-top: var(--stepper-desktop-top-offset);
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      transform: none;
+      width: var(--stepper-desktop-width);
     }
   }
 </style>

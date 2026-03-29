@@ -3,8 +3,8 @@ import Button from "$lib/components/Button/Button.svelte"
 </script>
 
 <div class="actions">
-  <Button dark filled href="/restaurants">Выбрать ресторан</Button>
-  <Button dark filled href="/prize#main_prize">Участвовать в розыгрыше</Button>
+  <Button dark href="/restaurants">Выбрать ресторан</Button>
+  <Button dark href="/prize#main_prize">Участвовать в розыгрыше</Button>
   <Button dark filled href="/promo">
     <span>Видеоролик</span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +22,14 @@ import Button from "$lib/components/Button/Button.svelte"
   .actions {
     margin-top: 16px;
 
+    max-width: 308px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    justify-content: space-between;
+
     :global .button {
       display: flex;
       max-width: fit-content;
@@ -33,41 +41,38 @@ import Button from "$lib/components/Button/Button.svelte"
       }
     }
 
-    @include scr.desktop {
-      display: flex;
-      flex-wrap: wrap;
-      width: 328px;
-      gap: 16px;
+    :global .button {
+      padding: 10px 18px;
 
-      justify-content: space-between;
-      left: 158px;
+      &:first-child {
+        width: 136px;
+        text-wrap: nowrap;
+        font-size: 10px;
+      }
 
-      :global .button {
-        &:first-child {
-          width: 136px;
-          text-wrap: nowrap;
-          font-size: 10px;
-        }
-
-        &:nth-child(2) {
-          width: 176px;
-          text-wrap: nowrap;
-          font-size: 10px;
-        }
+      &:nth-child(2) {
+        width: 176px;
+        text-wrap: nowrap;
+        font-size: 10px;
+      }
 
         &:last-child {
           flex-grow: 1;
           max-width: 100%;
           justify-content: space-between;
+        }
+
+      @include scr.desktop {
+        &:last-child {
           color: #1C212B;
           background-color: #FFF;
+
           svg {
             *[stroke] {
               stroke: #000;
             }
           }
         }
-
         &:not(:hover, :last-child) {
           background-color: transparent;
         }
@@ -79,12 +84,6 @@ import Button from "$lib/components/Button/Button.svelte"
         --btn-color: #fff;
 
         font-size: 12px;
-      }
-    }
-
-    @include scr.tablet-and-lower {
-      :global .button + .button {
-        margin-top: 12px;
       }
     }
   }

@@ -12,6 +12,10 @@
 </script>
 
 <section id="partners">
+  <div class="actions">
+    <ActionsDesktop />
+  </div>
+
   <div class="logos">
     <Roscosmos />
     <Poehaly65 />
@@ -22,17 +26,16 @@
     <div class="hotels"><CosmosHotels /></div>
   </div>
 
-  <Divider>
-    Информационные партнеры
-  </Divider>
+  <div class="info_partners">
+    <Divider>
+      Информационные партнеры
+    </Divider>
 
-  <div class="logos partners">
-    <div class="sisoev"><Sisoev /></div>
+    <div class="logos partners">
+      <div class="sisoev"><Sisoev /></div>
+    </div>
   </div>
 
-  <div class="actions">
-    <ActionsDesktop />
-  </div>
   <hr>
 
   <div class="phone">
@@ -93,6 +96,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   .additional_info {
     display: flex;
     justify-content: space-between;
@@ -133,6 +137,8 @@
     display: flex;
     gap: 24px;
     flex-wrap: wrap;
+
+    margin-top: 24px;
 
     @include scr.tablet-and-lower {
       justify-content: center;
@@ -182,7 +188,29 @@
 
   @include scr.desktop {
     #partners {
-      left: 157px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 37px;
+    }
+
+    .logos {
+      order: 1;
+    }
+
+    .info_partners {
+      order: 2;
+    }
+    .actions {
+      order: 3;
+    }
+
+    .phone {
+      order: 4;
+      margin-top: 37px;
+    }
+
+    .additional_info {
+      order: 5;
     }
   }
 </style>

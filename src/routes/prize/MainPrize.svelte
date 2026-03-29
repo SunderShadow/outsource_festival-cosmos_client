@@ -50,24 +50,6 @@ import bgMobile from "./assets/bg_top.png"
     color: #1C212B;
     padding-bottom: 93px;
 
-    @include scr.desktop {
-      position: absolute;
-      top: 0;
-      left: 100vw;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-
-      background-image:
-          linear-gradient(270deg, rgba(183, 182, 189, 0) 0%, rgba(96, 98, 101, 0.4) 23.6%, rgba(31, 36, 47, 0.5) 40.32%, #1F242F 75.14%),
-          var(--bg-desktop);
-      background-size: cover;
-      background-position: right;
-      padding: 0;
-      margin: 0;
-    }
-
     h2 {
       margin-top: 24px;
     }
@@ -77,14 +59,6 @@ import bgMobile from "./assets/bg_top.png"
       margin-left: auto;
       margin-right: auto;
 
-      @include scr.desktop {
-        width: 100%;
-        position: absolute;
-        left: 550px;
-        top: 170px;
-        z-index: 3;
-        color: #FFF;
-      }
     }
   }
 

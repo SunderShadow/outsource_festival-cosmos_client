@@ -18,12 +18,10 @@
 
   p {
     font-size: 13px;
-    max-width: 308px;
     color: var(--text-color-bright-bg);
     line-height: 16px;
 
     @include scr.desktop {
-      width: 423px;
       margin-bottom: 0;
 
       color: #FFFFFF;
@@ -35,10 +33,7 @@
 
   @include scr.desktop {
     section {
-      position: fixed;
-      top: calc(233px + var(--delta-y));
-      left: 513px;
-      width: 324px;
+      width: 316px;
     }
   }
 </style>

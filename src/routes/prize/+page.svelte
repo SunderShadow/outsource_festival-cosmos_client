@@ -102,25 +102,6 @@
       margin-top: 100px;
     }
 
-    @include scr.desktop {
-      --circle-offset: 160px;
-      position: absolute;
-      top: 0;
-      left: calc(100% + 120px);
-      z-index: 2;
-      background: none;
-      margin: 0;
-      padding: 37px 0;
-
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-
-      :global .sections-wrapper {
-        flex-grow: 1;
-      }
-    }
-
     .content {
       position: relative;
       max-width: 282px;
@@ -157,12 +138,6 @@
         z-index: 5;
       }
 
-      @include scr.desktop {
-        left: -900px;
-        overflow: hidden;
-        width: 100vh;
-      }
-
       &::before {
         content: '';
         position: absolute;
@@ -173,11 +148,6 @@
         aspect-ratio: 1 / 1;
         background-color: #1C212B;
         border-radius: 100%;
-
-        @include scr.desktop {
-          transform: translateX(0);
-          background: linear-gradient(90deg, #1C212B 300px, transparent 500px);
-        }
       }
     }
   }
@@ -201,11 +171,6 @@
 
     line-height: 40px;
     margin: 0;
-
-    @include scr.desktop {
-      font-size: 24px;
-      line-height: 44px;
-    }
   }
 
   p {
@@ -213,10 +178,5 @@
     font-size: 13px;
     line-height: 16px;
     margin-bottom: 0;
-
-    @include scr.desktop {
-      font-size: 13.5px;
-      margin-bottom: 2em;
-    }
   }
 </style>
