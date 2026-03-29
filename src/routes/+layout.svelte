@@ -73,44 +73,43 @@
       duration: 1,
     })
 
-    lenis.on('virtual-scroll', (e) => {
-      if (canChangePageByWheel) {
-        if (canGoNextPage && e.deltaY > 0) {
-          toNextSection()
+    if ($client_type.isDesktop) {
+      lenis.on('virtual-scroll', (e) => {
+        if (canChangePageByWheel) {
+          if (canGoNextPage && e.deltaY > 0) {
+            toNextSection()
+          }
+
+          if (canGoPrevPage && e.deltaY < 0) {
+            toPreviousSection()
+          }
         }
+      })
 
-        if (canGoPrevPage && e.deltaY < 0) {
-          toPreviousSection()
-        }
-      }
-    })
-
-    lenis.on('scroll', (e) => {
-      if (!canChangePageByWheel) {
-        return
-      }
-
-      canGoNextPage = e.scroll === lenis.limit;
-      canGoPrevPage = e.scroll === 0;
-    })
-  }
-  onMount(() => {
-    bindLenis()
-
-    if ($client_type.isMobile) {
-      detectSwipe(document.body, (direction: 'left' | 'right' | 'up' | 'down') => {
-        if (config.noChangeOnSwipe) {
+      lenis.on('scroll', (e) => {
+        if (!canChangePageByWheel) {
           return
         }
 
-        if (direction === 'left') {
-          toNextSection()
-        }
-        if (direction === 'right') {
-          toPreviousSection()
-        }
+        canGoNextPage = e.scroll === lenis.limit;
+        canGoPrevPage = e.scroll === 0;
       })
     }
+  }
+  onMount(() => {
+    bindLenis()
+    detectSwipe(document.body, (direction: 'left' | 'right' | 'up' | 'down') => {
+      if (config.noChangeOnSwipe) {
+        return
+      }
+
+      if (direction === 'left') {
+        toNextSection()
+      }
+      if (direction === 'right') {
+        toPreviousSection()
+      }
+    })
   })
 
   const darkPages = [
@@ -180,7 +179,6 @@
   let config = $state({
     noChangeOnSwipe: false,
     darkHeader: false,
-    lenis
   })
 
   setContext('layout-config', config)

@@ -5,10 +5,9 @@
  * @return Function
  * remove event listener
  */
-export const detect = (el: HTMLElement, cb: (direction: 'left' | 'down' | 'up' | 'right') => void) => {
+export const detect = (el: HTMLElement, cb: (direction: 'left' | 'down' | 'up' | 'right', e) => void) => {
   let unbind = () => {}
   const lst = (e) => {
-    e.stopPropagation();
     const threshold = 80 //px
     const initTouchCoords = [e.touches[0].clientX, e.touches[0].clientY]
 
@@ -19,20 +18,20 @@ export const detect = (el: HTMLElement, cb: (direction: 'left' | 'down' | 'up' |
 
       if (Math.abs(xDistance) > threshold) {
         if (xDistance > 0) {
-          cb('left')
+          cb('left', e)
         }
         if (xDistance < 0) {
-          cb('right')
+          cb('right', e)
         }
         el.removeEventListener('touchmove', listenTouchMove)
       }
 
       if (Math.abs(yDistance) > threshold) {
         if (yDistance > 0) {
-          cb('up')
+          cb('up', e)
         }
         if (yDistance < 0) {
-          cb('down')
+          cb('down', e)
         }
         el.removeEventListener('touchmove', listenTouchMove)
       }

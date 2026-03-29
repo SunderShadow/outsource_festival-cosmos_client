@@ -31,8 +31,9 @@
 
   let unbindOpenEvent = () => {}
   function bindOpenOnSwipeUp() {
-    const unbindOpenEvent = detectSwipe(newsEl, direction => {
+    const unbindOpenEvent = detectSwipe(newsEl, (direction, e) => {
       if (direction === 'up') {
+        e.stopPropagation()
         expand()
         unbindOpenEvent()
       }
@@ -46,14 +47,16 @@
   let unbindCloseEvent = () => {}
   function bindCloseOnSwipeDown() {
     if (newsEl.scrollTop === 0) {
-      unbindCloseEvent = detectSwipe(newsEl, direction => {
+      unbindCloseEvent = detectSwipe(newsEl, (direction, e ) => {
         if (direction === 'up') {
           unbindCloseEvent()
+          e.stopPropagation()
         }
 
         if (direction === 'down') {
           shrink()
           unbindCloseEvent()
+          e.stopPropagation()
         }
       })
     }
