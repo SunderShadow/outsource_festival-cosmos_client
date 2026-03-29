@@ -210,7 +210,9 @@
   @use "$lib/scss/mixins/scr";
 
   .wrapper {
-    height: 100vh;
+    @include scr.desktop {
+      height: 100vh;
+    }
     overflow: auto;
 
     &:-webkit-scrollbar {

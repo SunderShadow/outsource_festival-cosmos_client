@@ -62,15 +62,17 @@
       display: inline;
     }
 
+    :global svg {
+      *[fill] {
+        fill: #FFFFFF;
+      }
+    }
+
     a {
-      color: #1C212B;
+      color: #FFFFFF;
       text-decoration: none;
       text-align: center;
       margin-left: 8px;
-
-      @include scr.desktop {
-        color: #FFFFFF;
-      }
     }
   }
 
@@ -90,6 +92,7 @@
     gap: 16px;
 
     margin-top: 16px;
+    padding-bottom: 15px;
     @include scr.tablet-and-lower {
       flex-direction: column;
     }

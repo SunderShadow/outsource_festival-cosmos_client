@@ -49,10 +49,14 @@
     ]}/>
   </div>
 
-  <p>
-    Фестиваль «Первые в космосе» объединяет рестораны, шеф-поваров и города по всей стране.
-    Если вы хотите стать частью следующего фестиваля и представить свой космический гастрономический сет, оставьте заявку на участие.
-  </p>
+  <div class="text">
+    <p>
+      Фестиваль «Первые в космосе» объединяет рестораны, шеф-поваров и города по всей стране.
+      Если вы хотите стать частью следующего фестиваля и представить свой космический гастрономический сет, оставьте заявку на участие.
+    </p>
+
+    <hr>
+  </div>
 
   <div class="footer">
     <Partners />
@@ -101,6 +105,7 @@
       color: #fff;
     }
 
+
     :global .button {
       display: block;
       margin-top: 20px;
@@ -133,6 +138,7 @@
     margin-top: 24px;
     margin-bottom: 24px;
   }
+
 
   .divider {
     height: auto;
@@ -197,22 +203,29 @@
     }
   }
 
-  p {
+  .text {
     max-width: 338px;
-    margin-top: 15px;
-
-    color: #fff;
     margin-left: auto;
     margin-right: auto;
+
+    padding: 0 20px;
+    box-sizing: content-box;
+
+    @include scr.desktop {
+      max-width: 908px;
+    }
+  }
+
+  p {
+    margin-top: 15px;
 
     text-align: center;
     font-size: 13px;
 
-    padding: 0 20px;
+
+    color: #9C9C9C;
 
     @include scr.desktop {
-      max-width: 908px;
-      color: #9C9C9C;
       font-size: 19.5px;
       margin-top: 5px;
     }
