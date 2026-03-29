@@ -1,28 +1,26 @@
 <script lang="ts">
-  import bgMobile from "./assets/bg.png?enhanced&format=webp"
-  import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
-  import decoration from "./assets/decoration.png?enhanced&format=webp"
-  import decorationDesktop from "./assets/decoration-desktop.png?enhanced&format=webp"
+  import bgMobile from "./assets/bg-desktop.jpg?enhanced&format=webp&w=475&h=1900"
+  import bgTablet from "./assets/bg-desktop.jpg?enhanced&format=webp&w=768&h=1900"
+  import bgDesktop from "./assets/bg-desktop.jpg?enhanced&format=webp&w=1920&h=2900"
 
   import Countdown from "$lib/components/Countdown/Countdown.svelte"
-  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
-  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
-  import ProstoCosmos from "$lib/components/_logos/ProstoCosmos.svelte"
-  import CosmosHotels from "$lib/components/_logos/CosmosHotels.svelte"
-  import Sber from "$lib/components/_logos/Sber.svelte"
-  import Inkerman from "$lib/components/_logos/Inkerman.svelte"
-  import GastronomyInstitute from "$lib/components/_logos/GastronomyInstitute.svelte"
-  import {desktopWidth, tabletWidth} from "$lib/_env"
+
+  import {desktopWidth, mobileWidth} from "$lib/_env"
+  import ThreeStepsToCosmodrome from "../ThreeStepsToCosmodrome.svelte"
+  import Partners from "../Partners.svelte"
+  import MainPrize from "../MainPrize.svelte"
 </script>
 
 <svelte:head>
-  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {desktopWidth}">
-  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {desktopWidth}">
+  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="(width < {desktopWidth})">
+  <link rel="preload" as="image" href={bgTablet.img.src} fetchpriority="high" media="(width < {desktopWidth}) and (width > {mobileWidth})">
+  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="(width > {desktopWidth})">
 </svelte:head>
 
 <section
     class="wrapper"
     style:--bg-desktop="url('{bgDesktop.img.src}')"
+    style:--bg-tablet="url('{bgDesktop.img.src}')"
     style:--bg-mobile="url('{bgMobile.img.src}')"
 >
   <div class="content">
@@ -34,22 +32,15 @@
       <span>СОЮЗ МС-29</span>
     </h1>
 
-    <div class="logos">
-      <Roscosmos />
-      <Poehaly65 />
-      <GastronomyInstitute />
-      <div class="prosto_cosmos"><ProstoCosmos /></div>
-      <div class="sber"><Sber /></div>
-      <div class="inkerman"><Inkerman /></div>
-      <div class="hotels"><CosmosHotels /></div>
-    </div>
-  </div>
+    <ThreeStepsToCosmodrome />
 
-  <div class="decoration">
-    <picture>
-      <source srcset={decorationDesktop.img.src} media="(width > {tabletWidth}px)">
-      <img src={decoration.img.src} alt="">
-    </picture>
+    <div class="main-prize">
+      <MainPrize />
+    </div>
+
+    <div class="partners">
+      <Partners />
+    </div>
   </div>
 </section>
 
@@ -57,28 +48,75 @@
   @use "$lib/env";
   @use "$lib/scss/mixins/scr";
 
+  .partners {
+    padding-bottom: 46px;
+    margin-top: 87px;
+    background: linear-gradient(180deg, rgba(183, 182, 189, 0) 0%, rgba(96, 98, 101, 0.4) 23.6%, rgba(31, 36, 47, 0.5) 40.32%, #1F2533 75.14%);
+    @include scr.desktop {
+      background: linear-gradient(180deg, rgba(183, 182, 189, 0) 0%, rgba(31, 36, 47, 0.5) 20.32%, #1F2533 55.14%);
+    }
+  }
+
+  .main-prize {
+    @include scr.tablet-and-lower {
+      display: none;
+    }
+  }
+
   .wrapper {
     position: relative;
-    background-size: cover;
     background-repeat: no-repeat;
-    padding-bottom: 227px;
-    height: 908px;
 
-    @include scr.tablet-and-lower {
-      background-image: var(--bg-mobile);
+    :global {
+      #three-steps-to-cosmodrome {
+        margin-top: 65px;
+      }
+
+      #partners {
+        max-width: 308px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include scr.desktop {
+          max-width: 750px;
+        }
+      }
+    }
+
+    @include scr.desktop {
+      background-image: var(--bg-desktop);
+      background-position: 42% -700px;
+      background-size: 150%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(#000, .2);
+        background-position: 42% -700px;
+      }
+    }
+
+    @include scr.tablet {
+      background-image: linear-gradient(rgba(#000, .35) 400px, rgba(#000, .1)), var(--bg-tablet);
+      background-position: 45% -200px;
+    }
+
+    @include scr.mobile {
+      background-image: linear-gradient(rgba(#000, .35) 400px, rgba(#000, .1)), var(--bg-mobile);
+      background-position: center -20px;
     }
   }
 
   .content {
     position: relative;
-    padding-top: 184px;
+    padding-top: 84px;
 
-    @media (min-width: 750px) {
-      padding-top: 250px;
-    }
-
-    @media (min-width: 850px) {
-      padding-top: 300px;
+    @include scr.desktop {
+      padding-top: 176px;
     }
   }
 
@@ -86,7 +124,7 @@
     font-size: 16px;
     font-weight: 300;
     text-align: center;
-    margin-top: 140px;
+    margin-top: 95px;
 
     @include scr.desktop {
       font-size: 32px;

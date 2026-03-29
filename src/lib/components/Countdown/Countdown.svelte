@@ -83,7 +83,7 @@
         font-size: 16.5px;
       }
 
-      color: #1C212B;
+      color: rgba(#FFF, .75);
       transform: translateX(-50%);
     }
   }

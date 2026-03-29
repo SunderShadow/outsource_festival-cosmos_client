@@ -15,14 +15,14 @@
 
   .divider {
     position: relative;
-    background-color: #828A9D33;
     width: 100%;
     border: none;
     margin-top: 18px;
     margin-bottom: 18px;
 
+    opacity: var(--divider-opacity, .2);
     @include scr.desktop {
-      background-color: #FFFFFF33
+      background-color: var(--divider-color, #828A9D);
     }
   }
 
@@ -41,21 +41,20 @@
       text-wrap: nowrap;
       text-align: center;
 
-      color: #828A9D;
+      color: var(--divider-color, #828A9D);
       width: 188px;
 
       @include scr.desktop {
         color: #FFFFFF;
-        opacity: .5;
+        opacity: calc(var(--divider-opacity, 0) + .3);
       }
     }
 
     > div {
       flex-grow: 1;
       height: 1px;
-      background-color: #828A9D33;
-
-      color: #828A9D;
+      opacity: var(--divider-opacity, .2);
+      background-color: var(--divider-color, #828A9D);
 
       @include scr.desktop {
         background-color: #FFFFFF33

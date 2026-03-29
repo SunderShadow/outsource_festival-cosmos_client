@@ -1,0 +1,230 @@
+<script lang="ts">
+  import Sber from "$lib/components/_logos/Sber.svelte"
+  import Inkerman from "$lib/components/_logos/Inkerman.svelte"
+  import CosmosHotels from "$lib/components/_logos/CosmosHotels.svelte"
+  import Sisoev from "$lib/components/_logos/Sisoev.svelte"
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
+  import GastronomyInstitute from "$lib/components/_logos/GastronomyInstitute.svelte"
+  import ProstoCosmos from "$lib/components/_logos/ProstoCosmos.svelte"
+  import Divider from "$lib/components/Divider.svelte"
+</script>
+
+<section id="partners">
+  <div class="logos">
+    <Roscosmos />
+    <Poehaly65 />
+    <GastronomyInstitute />
+    <div class="prosto_cosmos"><ProstoCosmos /></div>
+    <div class="sber"><Sber /></div>
+    <div class="inkerman"><Inkerman /></div>
+    <div class="hotels"><CosmosHotels /></div>
+  </div>
+
+  <div class="info_partners">
+    <Divider>
+      Информационные партнеры
+      </Divider>
+
+    <div class="logos partners">
+      <div class="sisoev"><Sisoev /></div>
+    </div>
+  </div>
+
+  <div class="phone">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.01688 2.8705C9.03385 2.80704 9.06316 2.74755 9.10313 2.69543C9.14311 2.64331 9.19296 2.59957 9.24984 2.56672C9.30672 2.53387 9.36951 2.51254 9.43464 2.50397C9.49976 2.4954 9.56594 2.49974 9.62938 2.51675C10.5563 2.75859 11.402 3.24315 12.0794 3.92052C12.7567 4.59789 13.2413 5.44358 13.4831 6.3705C13.5001 6.43394 13.5045 6.50012 13.4959 6.56524C13.4873 6.63037 13.466 6.69316 13.4332 6.75004C13.4003 6.80692 13.3566 6.85677 13.3044 6.89675C13.2523 6.93672 13.1928 6.96603 13.1294 6.983C13.0871 6.99409 13.0437 6.99976 13 6.99987C12.8898 6.99987 12.7827 6.96347 12.6954 6.89634C12.608 6.8292 12.5453 6.73509 12.5169 6.62862C12.3196 5.87195 11.9242 5.18157 11.3712 4.62864C10.8183 4.07571 10.1279 3.68024 9.37126 3.483C9.30774 3.46609 9.24819 3.43683 9.196 3.39689C9.1438 3.35695 9.1 3.30711 9.06708 3.25022C9.03417 3.19333 9.01279 3.13051 9.00418 3.06536C8.99557 3.0002 8.99988 2.93399 9.01688 2.8705ZM8.87126 5.483C9.73313 5.713 10.2869 6.26675 10.5169 7.12862C10.5453 7.23509 10.608 7.3292 10.6954 7.39634C10.7827 7.46347 10.8898 7.49987 11 7.49987C11.0437 7.49976 11.0871 7.49409 11.1294 7.483C11.1928 7.46603 11.2523 7.43672 11.3044 7.39675C11.3566 7.35677 11.4003 7.30692 11.4332 7.25004C11.466 7.19316 11.4873 7.13037 11.4959 7.06524C11.5045 7.00012 11.5001 6.93394 11.4831 6.8705C11.1631 5.673 10.3269 4.83675 9.12938 4.51675C9.00125 4.48252 8.86477 4.50059 8.74996 4.56699C8.63515 4.63339 8.55142 4.74268 8.51719 4.87081C8.48296 4.99894 8.50104 5.13543 8.56744 5.25023C8.63384 5.36504 8.74312 5.44877 8.87126 5.483ZM13.9925 11.4424C13.8811 12.2893 13.4651 13.0666 12.8224 13.6293C12.1797 14.1919 11.3542 14.5014 10.5 14.4999C5.53751 14.4999 1.50001 10.4624 1.50001 5.49987C1.49847 4.64568 1.80794 3.82014 2.37059 3.17743C2.93324 2.53473 3.71061 2.11882 4.55751 2.00737C4.77166 1.98122 4.98854 2.02504 5.17575 2.13227C5.36296 2.23951 5.51047 2.40441 5.59626 2.60237L6.91626 5.54925V5.55675C6.98194 5.70828 7.00906 5.87372 6.99521 6.0383C6.98136 6.20287 6.92696 6.36145 6.83688 6.49987C6.82563 6.51675 6.81376 6.53237 6.80126 6.548L5.50001 8.0905C5.96813 9.04175 6.96313 10.028 7.92688 10.4974L9.44813 9.203C9.46307 9.19044 9.47872 9.17875 9.49501 9.168C9.63331 9.07575 9.79244 9.01944 9.95799 9.00416C10.1235 8.98888 10.2903 9.01512 10.4431 9.0805L10.4513 9.08425L13.3956 10.4036C13.5939 10.4891 13.7592 10.6365 13.8668 10.8237C13.9744 11.011 14.0185 11.228 13.9925 11.4424ZM13 11.3174C13 11.3174 12.9956 11.3174 12.9931 11.3174L10.0556 10.0017L8.53376 11.2961C8.51899 11.3086 8.50355 11.3203 8.48751 11.3311C8.3436 11.4271 8.17726 11.4842 8.00472 11.4966C7.83218 11.5091 7.65936 11.4767 7.50313 11.4024C6.33251 10.8367 5.16563 9.67862 4.59938 8.5205C4.5244 8.36541 4.49075 8.19358 4.5017 8.02166C4.51265 7.84974 4.56783 7.68357 4.66188 7.53925C4.67248 7.5223 4.68439 7.50621 4.69751 7.49112L6.00001 5.94675L4.68751 3.00925C4.68726 3.00675 4.68726 3.00424 4.68751 3.00175C4.08141 3.08081 3.52493 3.3781 3.12226 3.83795C2.7196 4.29779 2.49837 4.88865 2.50001 5.49987C2.50232 7.62089 3.34592 9.65438 4.84571 11.1542C6.3455 12.654 8.37898 13.4976 10.5 13.4999C11.1109 13.502 11.7016 13.2815 12.1617 12.8797C12.6218 12.4779 12.9198 11.9223 13 11.3167V11.3174Z" fill="#1C212B"/>
+    </svg>
+    <a href="tel:+79130493660">+7 (913) 049-36-60</a>
+  </div>
+
+  <div class="additional_info">
+    <span class="copyright">Copyright 2026 © Первые в космосе</span>
+    <div class="divider"></div>
+    <a href="">Политика  по обработке персональных данных</a>
+    <div class="divider"></div>
+    <a href=""><b>Положение о конкурсе</b></a>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "$lib/scss/mixins/scr";
+
+  .info_partners {
+    --divider-color: #fff;
+    --divider-opacity: .5;
+  }
+
+
+  .phone {
+    display: block;
+
+    text-align: center;
+
+    svg {
+      position: relative;
+      top: 1px;
+
+      display: inline;
+
+      :global {
+        *[fill] {
+          fill: #FFF;
+        }
+      }
+    }
+
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+      text-align: center;
+      margin-left: 8px;
+    }
+  }
+
+  hr {
+    @include scr.desktop {
+      display: none;
+    }
+
+    position: relative;
+    background-color: #fff;
+    opacity: .3;
+
+    width: 100%;
+    height: 1px;
+    border: none;
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+
+  .actions {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .additional_info {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-top: 16px;
+    @include scr.tablet-and-lower {
+      flex-direction: column;
+    }
+
+    @include scr.desktop {
+      > .divider {
+        display: block;
+        background: #6C7275;
+        width: 1px;
+      }
+    }
+
+    > * {
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 400;
+      text-decoration: none;
+      color: #BDC1CB;
+      text-align: center;
+
+      @include scr.desktop {
+        color: #E8ECEF;
+      }
+    }
+  }
+
+  .partners {
+    @include scr.desktop {
+      border-bottom: 1px solid rgba(#fff, .1);
+
+      padding-bottom: 20px;
+    }
+  }
+
+  .copyright {
+    display: block;
+  }
+
+  .logos {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    margin-top: 24px;
+
+    @include scr.tablet-and-lower {
+      justify-content: center;
+    }
+
+    .prosto_cosmos,
+    .sisoev,
+    .sber,
+    .inkerman,
+    .hotels {
+      :global svg *[fill]{
+        fill: #FFF;
+      }
+    }
+
+    :global svg {
+      height: 23px;
+      width: fit-content;
+
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
+
+    @include scr.desktop {
+      gap: 16px;
+
+      justify-content: center;
+    }
+
+    .inkerman :global svg {
+      height: 10px;
+    }
+    .cosmos :global svg {
+      height: 18px;
+    }
+
+    :global svg {
+      height: 23px;
+      width: fit-content;
+    }
+
+    &.partners :global svg {
+      height: 30px;
+    }
+  }
+
+  @include scr.desktop {
+    #partners {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logos {
+      order: 1;
+    }
+
+    .info_partners {
+      order: 2;
+    }
+    .actions {
+      order: 3;
+    }
+
+    .phone {
+      order: 4;
+      margin-top: 37px;
+    }
+
+    .additional_info {
+      order: 5;
+    }
+  }
+</style>

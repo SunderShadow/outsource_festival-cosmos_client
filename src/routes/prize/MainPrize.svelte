@@ -3,7 +3,6 @@ import Button from "$lib/components/Button/Button.svelte"
 
 import {desktopWidth} from "$lib/_env.js"
 import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
-import bgMobile from "./assets/bg_top.png"
 </script>
 
 <svelte:head>
@@ -15,22 +14,26 @@ import bgMobile from "./assets/bg_top.png"
     style:--bg-desktop="url('{bgDesktop.img.src}')"
 >
   <div class="content">
-    <h1>ГЛАВНЫЙ ПРИЗ</h1>
-    <p>
-      Главный приз фестиваля — поездка на космодром Байконур.<br>
-      <br>
-      Победитель увидит пилотируемый запуск космического корабля «Союз МС-29», который отправится к Международной космической станции.<br>
-      <br>
-      Это один из самых впечатляющих моментов современной космонавтики — старт ракеты и начало космической экспедиции.
-    </p>
+    <div>
+      <h1>ГЛАВНЫЙ ПРИЗ</h1>
+      <p>
+        Главный приз фестиваля — поездка на космодром Байконур.<br>
+        <br>
+        Победитель увидит пилотируемый запуск космического корабля «Союз МС-29», который отправится к Международной космической станции.<br>
+        <br>
+        Это один из самых впечатляющих моментов современной космонавтики — старт ракеты и начало космической экспедиции.
+      </p>
+    </div>
 
-    <h2>СЛЕДУЮЩАЯ ОСТАНОВКА — БАЙКОНУР</h2>
-    <p>
-      Закажите фестивальный сет.<br>
-      Получите открытку с номером.<br>
-      Зарегистрируйте его на сайте.<br>
-      И, возможно, именно вы окажетесь на старте космического корабля.
-    </p>
+    <div>
+      <h2>СЛЕДУЮЩАЯ ОСТАНОВКА — БАЙКОНУР</h2>
+      <p>
+        Закажите фестивальный сет.<br>
+        Получите открытку с номером.<br>
+        Зарегистрируйте его на сайте.<br>
+        И, возможно, именно вы окажетесь на старте космического корабля.
+      </p>
+    </div>
 
     <div class="btn_restaurants">
       <Button href="/restaurants">Выбрать ресторан</Button>
@@ -42,7 +45,9 @@ import bgMobile from "./assets/bg_top.png"
   @use "$lib/scss/mixins/scr";
 
   #main_prize {
-    background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, rgba(247, 248, 248, 0.6) 60px, #FFF 90px);
+    @include scr.tablet-and-lower {
+      background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, rgba(247, 248, 248, 0.6) 60px, #FFF 90px);
+    }
 
     padding-top: 135px;
     margin-top: 30px;
@@ -59,6 +64,15 @@ import bgMobile from "./assets/bg_top.png"
       margin-left: auto;
       margin-right: auto;
 
+      @include scr.desktop {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 44px;
+        color: #FFF;
+        max-width: 1024px;
+        padding: 0 100px 0 150px;
+        box-sizing: content-box;
+      }
     }
   }
 

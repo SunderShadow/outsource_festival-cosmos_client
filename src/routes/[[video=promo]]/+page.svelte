@@ -47,7 +47,7 @@
 
 <!-- Entrance Animation -->
 {#if !$animationStore.animationEnded}
-<!--  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>-->
+  <EntranceAnimation onAnimationEnd={onPageEntranceAnimationEnd}/>
 {/if}
 
 <div
