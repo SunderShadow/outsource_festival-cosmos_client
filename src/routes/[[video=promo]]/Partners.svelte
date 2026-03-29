@@ -22,8 +22,10 @@
     <GastronomyInstitute />
     <div class="prosto_cosmos"><ProstoCosmos /></div>
     <div class="sber"><Sber /></div>
-    <div class="inkerman"><Inkerman /></div>
-    <div class="hotels"><CosmosHotels /></div>
+    <div class="inkerman_hotels">
+      <div class="inkerman"><Inkerman /></div>
+      <div class="hotels"><CosmosHotels /></div>
+    </div>
   </div>
 
   <div class="info_partners">
@@ -46,9 +48,9 @@
   </div>
 
   <div class="additional_info">
-    <span class="copyright">Copyright 2026 © Первые в космосе</span>
+    <span class="copyright">Copyright {new Date().getFullYear()} © Первые в космосе</span>
     <div class="divider"></div>
-    <a href="">Политика  по обработке персональных данных</a>
+    <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
     <a href=""><b>Положение о конкурсе</b></a>
   </div>
@@ -57,16 +59,31 @@
 <style lang="scss">
   @use "$lib/scss/mixins/scr";
 
+  .info_partners {
+    @include scr.desktop {
+      --divider-color: #fff;
+      --divider-opacity: .5;
+    }
+  }
+
   .phone {
     display: block;
 
-    text-align: center;
+    @include scr.tablet-and-lower {
+      text-align: center;
+    }
 
     svg {
       position: relative;
       top: 1px;
 
       display: inline;
+
+      :global {
+        *[fill] {
+          fill: #FFF;
+        }
+      }
     }
 
     a {
@@ -83,18 +100,29 @@
 
   hr {
     position: relative;
-    background-color: #828A9D33;
     width: 100%;
     height: 1px;
-    border: none;
     margin-top: 18px;
     margin-bottom: 18px;
+
+    background-color: #828A9D33;
+    border: none;
+
+    @include scr.desktop {
+      background-color: #FFFFFF33;
+    }
   }
 
   .actions {
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+
+    @include scr.desktop {
+      margin-bottom: 40px;
+    }
+    @include scr.tablet-and-lower {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .additional_info {
@@ -144,10 +172,19 @@
       justify-content: center;
     }
 
+    .inkerman_hotels {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+
+      @include scr.tablet-and-lower {
+        justify-content: center;
+      }
+    }
+
     @include scr.desktop {
       gap: 16px;
-
-      justify-content: center;
+      width: 600px;
 
       .prosto_cosmos,
       .sisoev,
@@ -193,24 +230,5 @@
       margin-top: 37px;
     }
 
-    .logos {
-      order: 1;
-    }
-
-    .info_partners {
-      order: 2;
-    }
-    .actions {
-      order: 3;
-    }
-
-    .phone {
-      order: 4;
-      margin-top: 37px;
-    }
-
-    .additional_info {
-      order: 5;
-    }
   }
 </style>

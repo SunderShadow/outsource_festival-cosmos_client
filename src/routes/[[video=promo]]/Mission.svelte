@@ -33,7 +33,7 @@
 
   @include scr.desktop {
     section {
-      width: 316px;
+      width: 329px;
     }
   }
 </style>

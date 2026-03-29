@@ -11,25 +11,31 @@
 </script>
 
 <section id="partners">
-  <div class="logos">
-    <Roscosmos />
-    <Poehaly65 />
-    <GastronomyInstitute />
-    <div class="prosto_cosmos"><ProstoCosmos /></div>
-    <div class="sber"><Sber /></div>
-    <div class="inkerman"><Inkerman /></div>
-    <div class="hotels"><CosmosHotels /></div>
-  </div>
+  <div class="logos_wrapper">
+    <div class="logos">
+      <Roscosmos />
+      <Poehaly65 />
+      <GastronomyInstitute />
+      <div class="prosto_cosmos"><ProstoCosmos /></div>
+      <div class="sber"><Sber /></div>
+      <div class="inkerman_hotels">
+        <div class="inkerman"><Inkerman /></div>
+        <div class="hotels"><CosmosHotels /></div>
+      </div>
+    </div>
 
-  <div class="info_partners">
-    <Divider>
-      Информационные партнеры
+    <div class="info_partners">
+      <Divider>
+        Информационные партнеры
       </Divider>
 
-    <div class="logos partners">
-      <div class="sisoev"><Sisoev /></div>
+      <div class="logos partners">
+        <div class="sisoev"><Sisoev /></div>
+      </div>
     </div>
   </div>
+
+  <hr>
 
   <div class="phone">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +47,7 @@
   <div class="additional_info">
     <span class="copyright">Copyright 2026 © Первые в космосе</span>
     <div class="divider"></div>
-    <a href="">Политика  по обработке персональных данных</a>
+    <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
     <a href=""><b>Положение о конкурсе</b></a>
   </div>
@@ -55,11 +61,12 @@
     --divider-opacity: .5;
   }
 
-
   .phone {
     display: block;
 
-    text-align: center;
+    @include scr.tablet-and-lower {
+      text-align: center;
+    }
 
     svg {
       position: relative;
@@ -138,8 +145,6 @@
 
   .partners {
     @include scr.desktop {
-      border-bottom: 1px solid rgba(#fff, .1);
-
       padding-bottom: 20px;
     }
   }
@@ -155,8 +160,23 @@
 
     margin-top: 24px;
 
+    @include scr.desktop {
+      gap: 16px;
+      max-width: 600px;
+    }
+
     @include scr.tablet-and-lower {
       justify-content: center;
+    }
+
+    .inkerman_hotels {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+
+      @include scr.tablet-and-lower {
+        justify-content: center;
+      }
     }
 
     .prosto_cosmos,
@@ -178,12 +198,6 @@
       }
     }
 
-    @include scr.desktop {
-      gap: 16px;
-
-      justify-content: center;
-    }
-
     .inkerman :global svg {
       height: 10px;
     }
@@ -198,6 +212,26 @@
 
     &.partners :global svg {
       height: 30px;
+    }
+  }
+
+  #partners {
+    max-width: 308px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include scr.tablet {
+      max-width: 600px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    @include scr.desktop {
+      max-width: 1024px;
+      padding: 0 100px 0 150px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: content-box;
     }
   }
 

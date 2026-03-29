@@ -21,9 +21,11 @@
     <div class="hotels"><CosmosHotels /></div>
   </div>
 
-  <Divider>
-    Информационные партнеры
-  </Divider>
+  <div class="info_partners">
+    <Divider>
+      Информационные партнеры
+    </Divider>
+  </div>
 
   <div class="logos partners">
     <div class="sisoev"><Sisoev /></div>
@@ -39,9 +41,9 @@
   </div>
 
   <div class="additional_info">
-    <span class="copyright">Copyright 2026 © Первые в космосе</span>
+    <span class="copyright">Copyright {new Date().getFullYear()} © Первые в космосе</span>
     <div class="divider"></div>
-    <a href="">Политика  по обработке персональных данных</a>
+    <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
     <a href=""><b>Положение о конкурсе</b></a>
   </div>
@@ -49,6 +51,11 @@
 
 <style lang="scss">
   @use "$lib/scss/mixins/scr";
+
+  .info_partners {
+    --divider-color: #fff;
+    --divider-opacity: .5;
+  }
 
   .phone {
     display: block;
@@ -78,12 +85,17 @@
 
   hr {
     position: relative;
-    background-color: #828A9D33;
     width: 100%;
     height: 1px;
-    border: none;
     margin-top: 18px;
     margin-bottom: 18px;
+
+    background-color: #828A9D33;
+    border: none;
+
+    @include scr.desktop {
+      background-color: #FFFFFF33;
+    }
   }
 
   .additional_info {
@@ -134,7 +146,9 @@
 
     @include scr.desktop {
       gap: 16px;
-
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
       justify-content: center;
 
       .prosto_cosmos,

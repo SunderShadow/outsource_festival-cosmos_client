@@ -97,6 +97,15 @@
     }
   }
   onMount(() => {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        toPreviousSection()
+      }
+      if (e.key === 'ArrowDown') {
+        toNextSection()
+      }
+    })
+
     bindLenis()
     detectSwipe(document.body, (direction: 'left' | 'right' | 'up' | 'down') => {
       if (config.noChangeOnSwipe) {
@@ -215,13 +224,13 @@
     }
     overflow: auto;
 
-    &:-webkit-scrollbar {
+    &::-webkit-scrollbar {
       display: none;
     }
   }
 
   .stepper {
-    position: absolute;
+    position: fixed;
     top: 122px;
     width: 100%;
     transform: translateX(-12px);
@@ -231,6 +240,7 @@
     @include scr.desktop {
       z-index: calc(var(--header-z-index) + 1);
       margin-top: var(--stepper-desktop-top-offset);
+      padding-top: 120px;
       top: 0;
       bottom: 0;
       left: 20px;

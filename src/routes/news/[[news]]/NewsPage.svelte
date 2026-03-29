@@ -34,6 +34,7 @@
   let lenis: Lenis
 
   let percentScrolled = $state.raw()
+  let scrollbarVisible = $state.raw(false)
   onMount(() => {
     lenis = new Lenis({
       autoRaf: true,

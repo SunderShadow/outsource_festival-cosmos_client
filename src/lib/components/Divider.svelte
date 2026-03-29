@@ -45,7 +45,7 @@
       width: 188px;
 
       @include scr.desktop {
-        color: #FFFFFF;
+        color: var(--divider-color-desktop, #FFFFFF);
         opacity: calc(var(--divider-opacity, 0) + .3);
       }
     }
@@ -57,7 +57,7 @@
       background-color: var(--divider-color, #828A9D);
 
       @include scr.desktop {
-        background-color: #FFFFFF33
+        background-color: var(--divider-color-desktop, #FFFFFF);
       }
     }
   }

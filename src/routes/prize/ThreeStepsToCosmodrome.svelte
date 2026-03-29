@@ -8,19 +8,25 @@
 
   <div class="steps">
     <div class="step">
-      <div class="number">1</div>
-      <div class="title">Купить сет</div>
-      <p>Закажите фестивальный сет в ресторане-участнике</p>
+      <div>
+        <div class="number">1</div>
+        <div class="title">Купить сет</div>
+        <p>Закажите фестивальный сет в ресторане-участнике</p>
+      </div>
     </div>
     <div class="step">
-      <div class="number">2</div>
-      <div class="title">Получить номер</div>
-      <p>Закажите фестивальный сет в ресторане-участнике</p>
+      <div>
+        <div class="number">2</div>
+        <div class="title">Получить номер</div>
+        <p>Закажите фестивальный сет в ресторане-участнике</p>
+      </div>
     </div>
     <div class="step">
-      <div class="number">3</div>
-      <div class="title">Зарегистрироваться</div>
-      <p>Закажите фестивальный сет в ресторане-участнике</p>
+      <div>
+        <div class="number">3</div>
+        <div class="title">Зарегистрироваться</div>
+        <p>Закажите фестивальный сет в ресторане-участнике</p>
+      </div>
     </div>
   </div>
 </section>
@@ -66,17 +72,32 @@
     @include scr.desktop {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      gap: 44px;
       max-width: 1024px;
       padding: 0 100px 0 150px;
       box-sizing: content-box;
     }
   }
 
-  .step + .step {
-    margin-top: 16px;
-  }
+    @include scr.mobile {
+      .step + .step {
+        margin-top: 16px;
+      }
+    }
+
   .step {
-    max-width: 260px;
+    display: flex;
+    justify-content: center;
+
+    width: 260px;
+
+    @include scr.tablet {
+      > div {
+        width: 200px;
+        flex-shrink: 1;
+        flex-grow: 0;
+      }
+    }
 
     .number {
       font-size: 64px;

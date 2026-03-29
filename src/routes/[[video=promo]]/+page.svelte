@@ -1,6 +1,6 @@
 <script lang="ts">
   import bgMobile from "./assets/bg-mobile.png?enhanced&format=webp"
-  import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
+  import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp&quality=100"
 
   import EntranceAnimation from "./+page/EntranceAnimation.svelte"
 
@@ -41,8 +41,8 @@
 
 <svelte:head>
   <title>Первые в космосе</title>
-  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {desktopWidth}">
-  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width => {desktopWidth}">
+  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="(width < {desktopWidth})">
+  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="(width => {desktopWidth})">
 </svelte:head>
 
 <!-- Entrance Animation -->
@@ -51,7 +51,7 @@
 {/if}
 
 <div
-    bind:this={wrapperEl}
+  bind:this={wrapperEl}
   class="page-wrapper"
   style:--bg-desktop="url('{bgDesktop.img.src}')"
   style:--bg-mobile="url('{bgMobile.img.src}')"
@@ -173,7 +173,6 @@
 
     @include scr.desktop {
       background-size: cover;
-      background-position-x: right;
       background-image: var(--bg-desktop);
     }
   }
@@ -187,7 +186,7 @@
     }
 
     @include scr.mobile {
-      width: 308px;
+      max-width: 308px;
     }
 
     @include scr.desktop {

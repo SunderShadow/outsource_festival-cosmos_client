@@ -1,6 +1,5 @@
 <script lang="ts">
-  import bgMobile from "./assets/bg_top.png?enhanced&format=webp"
-  import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
+  import bgMobile from "./assets/bg_top.png?enhanced&format=webp&quality=100"
 
   import {desktopWidth} from "$lib/_env"
   import Souz from "./Souz/Souz.svelte"

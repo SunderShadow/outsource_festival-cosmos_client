@@ -4,8 +4,8 @@
   }
 </script>
 <script lang="ts">
-  import Logo from "$lib/components/Logo.svelte"
   import Menu from "./Menu.svelte"
+  import LogoAlignLeft from "$lib/components/LogoAlignLeft.svelte"
 
   let menuHidden = $state.raw(true)
 
@@ -15,7 +15,9 @@
 </script>
 
 <header class:dark>
-  <Logo />
+  <div class="logo">
+    <LogoAlignLeft />
+  </div>
   <button aria-label="Открыть меню" onclick={() => {menuHidden = false}}>
     <svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="1.5" y1="1.5" x2="23.5" y2="1.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
@@ -32,7 +34,7 @@
   @use "$lib/scss/mixins/scr";
 
   header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -51,17 +53,29 @@
     z-index: var(--header-z-index);
 
     :global svg {
-      *[fill] {
+      *[fill="#F0F3F5"] {
         fill: #FFF;
         transition: fill 300ms, stroke 300ms;
       }
-      *[stroke] {
+      *[stroke="#F0F3F5"] {
         stroke: #FFF;
         transition: stroke 300ms, fill 300ms;
       }
     }
   }
 
+  .logo {
+    width: 100px;
+    @include scr.desktop {
+      margin-left: 10px;
+    }
+    :global {
+      svg {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
   button {
     all: unset;
 

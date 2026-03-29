@@ -67,7 +67,7 @@
   // @ts-ignore
   let restaurantEl: HTMLElement = $state()
 
-  let selectedMeal = $state(restaurant.meals[0])
+  let selectedMeal = $state(restaurant.meals.length ? restaurant.meals[0] : null)
 </script>
 
 <svelte:head>
@@ -85,7 +85,7 @@
   <div class="content">
     <section class="fast-content" style:--bg="url('{restaurant.thumbnails.desktop}')">
       <div class="header">
-        <a class="back" href="/restaurants">
+        <a class="back" href="/restaurants" aria-label="Обратно">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 3.75C16.7861 3.75 13.6443 4.70305 10.972 6.48862C8.29969 8.27419 6.21689 10.8121 4.98696 13.7814C3.75704 16.7507 3.43524 20.018 4.06225 23.1702C4.68926 26.3224 6.23692 29.2179 8.50952 31.4905C10.7821 33.7631 13.6776 35.3107 16.8298 35.9378C19.982 36.5648 23.2493 36.243 26.2186 35.013C29.1879 33.7831 31.7258 31.7003 33.5114 29.028C35.297 26.3557 36.25 23.2139 36.25 20C36.2455 15.6916 34.5319 11.561 31.4855 8.51454C28.439 5.46806 24.3084 3.75455 20 3.75ZM20 33.75C17.2805 33.75 14.6221 32.9436 12.3609 31.4327C10.0997 29.9218 8.33737 27.7744 7.29666 25.2619C6.25596 22.7494 5.98366 19.9847 6.51421 17.3175C7.04476 14.6503 8.35432 12.2003 10.2773 10.2773C12.2003 8.35431 14.6503 7.04475 17.3175 6.5142C19.9848 5.98366 22.7494 6.25595 25.2619 7.29666C27.7744 8.33736 29.9218 10.0997 31.4327 12.3609C32.9436 14.6221 33.75 17.2805 33.75 20C33.7459 23.6455 32.2959 27.1404 29.7182 29.7182C27.1404 32.2959 23.6455 33.7459 20 33.75ZM23.3844 14.6344L18.0172 20L23.3844 25.3656C23.5005 25.4818 23.5926 25.6196 23.6555 25.7714C23.7184 25.9231 23.7507 26.0858 23.7507 26.25C23.7507 26.4142 23.7184 26.5769 23.6555 26.7286C23.5926 26.8804 23.5005 27.0182 23.3844 27.1344C23.2682 27.2505 23.1304 27.3426 22.9786 27.4055C22.8269 27.4683 22.6643 27.5007 22.5 27.5007C22.3358 27.5007 22.1731 27.4683 22.0214 27.4055C21.8696 27.3426 21.7318 27.2505 21.6156 27.1344L15.3656 20.8844C15.2494 20.7683 15.1572 20.6304 15.0943 20.4787C15.0314 20.3269 14.999 20.1643 14.999 20C14.999 19.8357 15.0314 19.6731 15.0943 19.5213C15.1572 19.3696 15.2494 19.2317 15.3656 19.1156L21.6156 12.8656C21.7318 12.7495 21.8696 12.6574 22.0214 12.5945C22.1731 12.5317 22.3358 12.4993 22.5 12.4993C22.6643 12.4993 22.8269 12.5317 22.9786 12.5945C23.1304 12.6574 23.2682 12.7495 23.3844 12.8656C23.5005 12.9818 23.5926 13.1196 23.6555 13.2714C23.7184 13.4231 23.7507 13.5858 23.7507 13.75C23.7507 13.9142 23.7184 14.0769 23.6555 14.2286C23.5926 14.3804 23.5005 14.5182 23.3844 14.6344Z" fill="white"/>
           </svg>
@@ -130,7 +130,7 @@
         <span class="divider"></span>
         <div class="phone">
           <span>Номер</span>
-          <span>{restaurant.phone}</span>
+          <a href="tel:{restaurant.phone}">{restaurant.phone}</a>
         </div>
       </div>
 
@@ -142,25 +142,30 @@
     </section>
 
     <div class="col-2">
-      <section id="meal_preview">
-        <img src={selectedMeal.thumbnails.full} alt="">
-        <div class="subtitle">{selectedMeal.chef_name}</div>
-        <h2 class="title">{selectedMeal.name}</h2>
 
-        <div class="description_cost">
-          <div class="description">
-            <h3 class="description-title">Описание сета</h3>
-            <p>{selectedMeal.description}</p>
-          </div>
+      {#if selectedMeal}
+        <section id="meal_preview">
+          <img src={selectedMeal.thumbnails.full} alt="">
+          <div class="subtitle">{selectedMeal.chef_name}</div>
+          <h2 class="title">{selectedMeal.name}</h2>
 
-          <div class="cost">
-            {selectedMeal.cost}$
+          <div class="description_cost">
+            <div class="description">
+              <h3 class="description-title">Описание сета</h3>
+              <p>{selectedMeal.description}</p>
+            </div>
+
+            <div class="cost">
+              {selectedMeal.cost} ₽
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      {/if}
       <section id="reviews">
         <h2>Отзывы</h2>
-        <div class="subtitle">{selectedMeal.chef_name}</div>
+        {#if selectedMeal}
+          <div class="subtitle">{selectedMeal.chef_name}</div>
+        {/if}
 
         <div class="statistics">
           <div class="item">
@@ -187,22 +192,26 @@
       </section>
     </div>
 
-    <section id="meals">
-      {#each restaurant.meals as meal, i}
-        <article>
-          <img src={meal.thumbnails.card} alt="">
-          <div class="content">
-            <h3><a href={$client_type.isMobile ? '#meal_preview' :''} onclick={() => {selectedMeal = restaurant.meals[i]}}>{meal.name}</a></h3>
-            <span class="subtitle">{meal.chef_name}</span>
-          </div>
-        </article>
-      {/each}
-    </section>
+    {#if restaurant.meals.length > 0}
+      <section id="meals">
+        {#each restaurant.meals as meal, i}
+          <article>
+            <img src={meal.thumbnails.card} alt="">
+            <div class="content">
+              <h3><a href={$client_type.isMobile ? '#meal_preview' :''} onclick={() => {selectedMeal = restaurant.meals[i]}}>{meal.name}</a></h3>
+              <span class="subtitle">{meal.chef_name}</span>
+            </div>
+          </article>
+        {/each}
+      </section>
+    {/if}
+
   </div>
 </article>
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .restaurant {
     position: fixed;
@@ -221,7 +230,7 @@
     background-color: #F3F4F5;
     flex-direction: column;
 
-    @media (min-width: env.$desktop-width) {
+    @include scr.desktop {
       overflow: hidden;
       padding: 16px;
       background-color: #F1F2F2;
@@ -239,7 +248,7 @@
     align-items: center;
     z-index: 2;
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       display: none;
     }
 
@@ -255,16 +264,16 @@
 
     .back {
       display: block;
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         margin-bottom: 15px;
       }
-      @media (max-width: env.$tablet-width) {
+      @include scr.tablet-and-lower {
         display: none;
       }
     }
 
     .img {
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         display: none;
       }
 
@@ -292,7 +301,7 @@
     }
 
     &-content {
-      @media (max-width: env.$tablet-width) {
+      @include scr.tablet-and-lower {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -306,7 +315,7 @@
       bottom: 0;
       right: 0;
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         position: static;
       }
 
@@ -317,12 +326,12 @@
 
         margin-bottom: 40px;
 
-        @media (max-width: env.$tablet-width) {
+        @include scr.tablet-and-lower {
           margin-left: 32px;
           margin-right: auto;
         }
 
-        @media (min-width: env.$tablet-width) {
+        @include scr.desktop {
           max-width: 100%;
         }
       }
@@ -333,7 +342,7 @@
       margin-top: 5px;
       margin-bottom: 5px;
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         font-size: 28px;
       }
     }
@@ -341,7 +350,7 @@
     .working_time {
       font-size: 14px;
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         font-size: 24px;
       }
 
@@ -349,7 +358,7 @@
         font-size: 11px;
         margin-left: 5px;
 
-        @media (min-width: env.$tablet-width) {
+        @include scr.desktop {
           font-size: 19px;
         }
       }
@@ -360,7 +369,7 @@
       align-items: center;
       gap: 10px;
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         :global svg {
           width: 46px;
           height: 46px;
@@ -370,7 +379,7 @@
         font-size: 25px;
         margin: 0;
 
-        @media (min-width: env.$tablet-width) {
+        @include scr.desktop {
           font-size: 42px;
         }
       }
@@ -381,7 +390,7 @@
     display: grid;
     flex-grow: 1;
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       grid-template-columns: 3fr 160px 2fr;
 
       gap: 14px;
@@ -393,7 +402,7 @@
     padding: 10px;
     border-radius: 20px; // Desktop
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       &::after {
         content: '';
         background: linear-gradient(90deg, rgba(0, 0, 0, .75), rgba(0, 0, 0, .25));
@@ -426,11 +435,11 @@
     .divider {
       display: none;
     }
-    @media (max-width: env.$mobile-width) {
+    @include scr.tablet-and-lower {
       background-color: #FFF;
     }
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       padding: 40px 73px;
 
       color: #FFF;
@@ -446,7 +455,7 @@
       line-height: 1;
       color: #78858F;
 
-      @media (max-width: env.$tablet-width) {
+      @include scr.tablet-and-lower {
         text-align: center;
         padding-bottom: 70px;
 
@@ -454,7 +463,7 @@
         margin-right: auto;
       }
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         color: inherit;
         max-width: 65%;
         margin: 0;
@@ -480,9 +489,12 @@
     display: flex;
     margin-top: 35px;
 
-    @media (min-width: env.$tablet-width) {
+    @include scr.desktop {
       margin: 41px 0;
+    }
 
+    a {
+      text-decoration: none;
     }
 
     .divider {
@@ -497,7 +509,7 @@
         text-align: center;
       }
 
-      @media (max-width:  env.$tablet-width) {
+      @include scr.tablet-and-lower {
         br {
           display: none;
         }
@@ -513,7 +525,7 @@
         font-size: 14px;
         font-weight: 400;
 
-        @media (min-width: env.$tablet-width) {
+        @include scr.desktop {
           font-size: 21px;
         }
       }
@@ -522,7 +534,7 @@
         font-size: 12px;
         color: #78858F;
 
-        @media (min-width: env.$tablet-width) {
+        @include scr.desktop {
           text-decoration: underline;
           color: inherit;
           font-size: 17px;
@@ -533,7 +545,7 @@
 
   #meal_preview {
     margin-top: 13px;
-    @media (max-width: env.$mobile-width) {
+    @include scr.tablet-and-lower {
       background-color: #FFF;
     }
     padding-bottom: 30px;
@@ -542,7 +554,7 @@
       display: block;
       aspect-ratio: 230 / 240;
 
-      @media (max-width: env.$tablet-width) {
+      @include scr.tablet-and-lower {
         width: max(230px, 60%);
       }
 
@@ -570,7 +582,7 @@
       margin: 0 auto;
       font-size: 28px;
 
-      @media (min-width: env.$tablet-width) {
+      @include scr.desktop {
         font-size: 42px;
       }
     }
@@ -677,11 +689,13 @@
     }
   }
 
-  @media (min-width:  env.$tablet-width) {
+  @include scr.desktop {
     .col-2 {
       grid-column: 3 / 4;
     }
+  }
 
+  @include scr.tablet-and-higher {
     #meal_preview {
       .description_cost {
         display: flex;
@@ -689,6 +703,7 @@
       }
     }
   }
+
   #meals {
     overflow: auto;
 
@@ -701,7 +716,11 @@
     gap: 12px;
     padding: 10px;
 
-    @media (min-width:  env.$tablet-width) {
+    @include scr.tablet {
+      grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+    }
+
+    @include scr.desktop {
       grid-row: 1;
       grid-column: 2 / 3;
       padding: 0;

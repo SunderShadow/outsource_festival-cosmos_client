@@ -1,7 +1,7 @@
 <script lang="ts">
-  import bgMobile from "./assets/bg-desktop.jpg?enhanced&format=webp&w=475&h=1900"
-  import bgTablet from "./assets/bg-desktop.jpg?enhanced&format=webp&w=768&h=1900"
-  import bgDesktop from "./assets/bg-desktop.jpg?enhanced&format=webp&w=1920&h=2900"
+  import bgMobile from "./assets/bg-desktop.jpg?enhanced&format=webp&w=475&h=1900&quality=100"
+  import bgTablet from "./assets/bg-desktop.jpg?enhanced&format=webp&w=768&h=1900&quality=100"
+  import bgDesktop from "./assets/bg-desktop.jpg?enhanced&format=webp&w=1920&h=2900&quality=100"
 
   import Countdown from "$lib/components/Countdown/Countdown.svelte"
 
@@ -52,6 +52,7 @@
     padding-bottom: 46px;
     margin-top: 87px;
     background: linear-gradient(180deg, rgba(183, 182, 189, 0) 0%, rgba(96, 98, 101, 0.4) 23.6%, rgba(31, 36, 47, 0.5) 40.32%, #1F2533 75.14%);
+
     @include scr.desktop {
       background: linear-gradient(180deg, rgba(183, 182, 189, 0) 0%, rgba(31, 36, 47, 0.5) 20.32%, #1F2533 55.14%);
     }
@@ -70,16 +71,6 @@
     :global {
       #three-steps-to-cosmodrome {
         margin-top: 65px;
-      }
-
-      #partners {
-        max-width: 308px;
-        margin-left: auto;
-        margin-right: auto;
-
-        @include scr.desktop {
-          max-width: 750px;
-        }
       }
     }
 

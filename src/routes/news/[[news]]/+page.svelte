@@ -1,21 +1,10 @@
 <script lang="ts">
-  import {getContext, onDestroy} from "svelte"
-
   import NewsPage from "./NewsPage.svelte"
   import bgMobile from "./assets/bg-mobile.png?enhanced&format=webp&quality=100"
   import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp&quality=100"
   import NewsList from "./NewsList.svelte"
-  import client_type from "$lib/store/client_type"
   import Scrollbar from "$lib/components/Scrollbar/Scrollbar.svelte"
 
-  const layoutConfig = getContext('layout-config')
-  let unsubClientType = client_type.subscribe(st => {
-    layoutConfig.darkHeader = st.isDesktop
-  })
-
-  onDestroy(() => {
-    unsubClientType()
-  })
   let {
     data
   } = $props()
@@ -23,6 +12,7 @@
   let newsList = $derived(data.manyNews)
   let expanded = $state.raw(false)
 
+  let scrollbarVisible = $state.raw(false)
   let percentScrolled = $state.raw()
 </script>
 
@@ -90,12 +80,15 @@
 
   .wrapper {
     height: 100svh;
-    background-position: top;
+    background-position: top left;
+    background-size: 400px auto;
     background-repeat: no-repeat;
 
     background-image: var(--bg-mobile);
-    background-size: 100%;
 
+    @media (min-width: 400px) {
+      background-size: 100%;
+    }
     @include scr.desktop {
       background-size: cover;
       background-image: var(--bg-desktop);
