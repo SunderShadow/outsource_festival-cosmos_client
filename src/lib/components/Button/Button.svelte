@@ -7,6 +7,7 @@
     white?: boolean
     dark?: boolean
     filled?: boolean
+    disabled?: boolean
     children: Snippet
   }
 </script>
@@ -17,6 +18,7 @@
     dark = false,
     filled = false,
     href,
+    disabled = false,
     children,
     ...restProps
   }: Props = $props()
@@ -28,6 +30,7 @@
   this={tag}
   {href}
   class="button"
+  class:disabled
   class:white
   class:dark
   class:filled
@@ -54,7 +57,7 @@
 
     cursor: pointer;
 
-    transition-property: background-color;
+    transition-property: background-color, opacity;
     transition-duration: 300ms;
 
     &.white {
@@ -67,6 +70,9 @@
       --btn-color-hover: rgba(28, 33, 43, 0.6);
     }
 
+    &.disabled {
+      opacity: .7;
+    }
     &.filled {
       background-color: var(--btn-color);
 
