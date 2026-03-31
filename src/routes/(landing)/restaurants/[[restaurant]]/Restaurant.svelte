@@ -233,10 +233,9 @@
     box-shadow: 0 0 0 100vh rgba(0,0,0,0.5);
 
     @include scr.desktop {
-      overflow: hidden;
+      overflow: auto;
       padding: 16px;
-      height: auto;
-      min-height: 100vh;
+      height: 100vh;
       background-color: #F1F2F2;
     }
   }
