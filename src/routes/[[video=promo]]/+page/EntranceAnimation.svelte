@@ -195,6 +195,7 @@
       background-position: top center;
       background-image: var(--bg-desktop);
 
+      height: 100vh;
       @media (min-width: 1600px) {
         background-position: center -1300px;
       }
