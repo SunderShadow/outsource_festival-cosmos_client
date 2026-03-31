@@ -1,5 +1,6 @@
 <script lang="ts">
   import bgMobile from "./assets/bg-mobile.png?enhanced&format=webp"
+  import bgTablet from "./assets/bg-tablet.png?enhanced&format=webp&quality=100"
   import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp&quality=100"
 
   import EntranceAnimation from "./+page/EntranceAnimation.svelte"
@@ -42,6 +43,7 @@
 <svelte:head>
   <title>Первые в космосе</title>
   <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="(width < {desktopWidth})">
+  <link rel="preload" as="image" href={bgTablet.img.src} fetchpriority="high" media="(width < {desktopWidth}) and (width > {tabletWidth})">
   <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="(width => {desktopWidth})">
 </svelte:head>
 
@@ -54,6 +56,7 @@
   bind:this={wrapperEl}
   class="page-wrapper"
   style:--bg-desktop="url('{bgDesktop.img.src}')"
+  style:--bg-tablet="url('{bgTablet.img.src}')"
   style:--bg-mobile="url('{bgMobile.img.src}')"
 >
 <!--  Promo video -->
@@ -144,7 +147,8 @@
     padding: 20px;
 
     @include scr.tablet-and-lower {
-      background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, #F7F8F8 110px);
+      margin-top: 90px;
+      background: #F7F8F8;
     }
   }
 
@@ -162,24 +166,33 @@
     width: 100%;
     min-height: 100svh;
 
-    background-size: 100%;
     background-repeat: no-repeat;
     background-position: top right;
 
+    @include scr.mobile {
+      background-position: top left;
+      background-image: var(--bg-mobile);
+    }
+
     @include scr.tablet-and-lower {
       padding-top: 268px;
-      background-image: var(--bg-mobile);
+      background-position: top left;
+    }
+
+    @include scr.tablet {
+      background-image: var(--bg-tablet);
+      background-position: top center;
     }
 
     @include scr.desktop {
       background-size: cover;
+      background-position: left;
       background-image: var(--bg-desktop);
     }
   }
 
   .content-wrapper {
     @include scr.tablet-and-lower {
-      margin-top: 90px;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;

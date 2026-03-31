@@ -82,8 +82,6 @@
     padding: 64px 0;
 
     a {
-      border: 2.87px solid;
-      border-image-source: linear-gradient(180deg, #FFFFFF 0%, #ECECEC 100%);
       color: #000000;
       text-decoration: none;
       padding: 10px;

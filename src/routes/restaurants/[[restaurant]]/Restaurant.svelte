@@ -218,7 +218,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100svh;
+    height: 85svh;
     z-index: 21;
 
     transition: height;
@@ -230,9 +230,12 @@
     background-color: #F3F4F5;
     flex-direction: column;
 
+    box-shadow: 0 0 0 100vh rgba(0,0,0,0.5);
+
     @include scr.desktop {
       overflow: hidden;
       padding: 16px;
+      height: 100vh;
       background-color: #F1F2F2;
     }
   }
