@@ -235,7 +235,8 @@
     @include scr.desktop {
       overflow: hidden;
       padding: 16px;
-      height: 100vh;
+      height: auto;
+      min-height: 100vh;
       background-color: #F1F2F2;
     }
   }
