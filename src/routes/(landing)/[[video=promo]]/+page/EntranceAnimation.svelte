@@ -356,7 +356,6 @@
 
     :global svg {
       display: block;
-      max-width: fit-content;
       margin-left: auto;
       margin-right: auto;
 
