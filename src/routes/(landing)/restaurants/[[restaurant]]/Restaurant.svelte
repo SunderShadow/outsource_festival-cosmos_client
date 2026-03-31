@@ -149,15 +149,13 @@
           <div class="subtitle">{selectedMeal.chef_name}</div>
           <h2 class="title">{selectedMeal.name}</h2>
 
-          <div class="description_cost">
-            <div class="description">
-              <h3 class="description-title">Описание сета</h3>
-              <p>{selectedMeal.description}</p>
-            </div>
+          <div class="description">
+            <h3 class="description-title">Описание сета</h3>
+            <p>{selectedMeal.description}</p>
+          </div>
 
-            <div class="cost">
-              {selectedMeal.cost} ₽
-            </div>
+          <div class="cost">
+            {selectedMeal.cost} ₽
           </div>
         </section>
       {/if}
@@ -573,6 +571,9 @@
 
       background-color: #EFEFEF;
 
+      @include scr.desktop {
+        max-width: none;
+      }
       &-title {
         font-size: 16px;
         font-weight: 400;
@@ -671,14 +672,6 @@
     }
   }
 
-  @include scr.tablet-and-higher {
-    #meal_preview {
-      .description_cost {
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
 
   #meals {
     overflow: auto;
