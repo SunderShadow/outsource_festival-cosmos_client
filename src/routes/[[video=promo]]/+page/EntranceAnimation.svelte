@@ -382,7 +382,7 @@
       margin-right: auto;
 
       width: auto;
-      height: 120px;
+      height: 171px;
     }
 
     div {
