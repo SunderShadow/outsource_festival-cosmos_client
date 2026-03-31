@@ -1,16 +1,20 @@
 <script lang="ts">
+  // Images
   import bgMobile from "./assets/bg-mobile.png?enhanced&format=webp"
   import bgTablet from "./assets/bg-tablet.png?enhanced&format=webp&quality=100"
   import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp&quality=100"
+
+  // Video
+  import videoDesktop from "./assets/promo-desktop.webm"
+  import videoMobile from "./assets/promo.webm"
 
   import EntranceAnimation from "./+page/EntranceAnimation.svelte"
 
   import {desktopWidth, tabletWidth} from "$lib/_env"
 
   import {store as animationStore} from "$lib/store/entrance_animation"
-  import {getContext, onMount} from "svelte"
-  import videoDesktop from "./assets/promo-desktop.mp4"
-  import videoMobile from "./assets/promo.mp4"
+  import {getContext} from "svelte"
+
   import {page} from "$app/state"
   import {goto} from "$app/navigation"
 
@@ -28,16 +32,6 @@
   }
 
   let showPromo = $derived(!!page.params.video)
-  let videoSrc = $state.raw()
-
-  let wrapperEl = $state.raw()
-  onMount(() => {
-    if (window.innerWidth > tabletWidth) {
-      videoSrc = videoDesktop
-    } else {
-      videoSrc = videoMobile
-    }
-  })
 </script>
 
 <svelte:head>
@@ -53,7 +47,6 @@
 {/if}
 
 <div
-  bind:this={wrapperEl}
   class="page-wrapper"
   style:--bg-desktop="url('{bgDesktop.img.src}')"
   style:--bg-tablet="url('{bgTablet.img.src}')"
@@ -62,7 +55,10 @@
 <!--  Promo video -->
   {#if showPromo}
     <div class="promo-wrapper">
-      <video onclick={() => {goto('/')}} src={videoSrc} autoplay preload muted></video>
+      <video onclick={() => {goto('/')}} autoplay preload muted>
+        <source src={videoDesktop} type="video/webm" media="(width >= {tabletWidth}px)">
+        <source src={videoMobile} type="video/webm" media="(width < {tabletWidth}px)">
+      </video>
     </div>
   {/if}
 
