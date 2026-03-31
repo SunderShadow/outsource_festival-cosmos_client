@@ -34,7 +34,7 @@
     <div class="bottom">
       <SocialLinks links={[
         {href: 'https://max.ru/join/go1b5aULgVBhToyvGxlWgrLyrDdldN_J675W7B5Gr3Q', type: 'max'},
-        {href: 'https://t.me/festival_koskos', type: 'telegram'}
+        {href: 'https://t.me/festival_kosmos', type: 'telegram'}
       ]}/>
       <p class="copyright">
         Copyright © <b>Первые
@@ -85,16 +85,8 @@
       color: #000000;
       text-decoration: none;
       padding: 10px;
-      border-radius: 10px;
-      box-shadow:
-          0 0.96px 1.92px 0 #00000033,
-          0 0.48px 2.39px 0 #0000001A,
-          0 0.96px 0.96px 0.96px #00000026,
-          0 0 0.24px 0.48px #0000001A;
 
       &.active {
-        box-shadow: 0 0 1px 0 #0000000D inset;
-        background: linear-gradient(180deg, #E9E9E9 0%, #E9E9E9 0.01%, #FFFFFF 100%);
       }
     }
   }
