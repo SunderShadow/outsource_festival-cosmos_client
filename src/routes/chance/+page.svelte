@@ -4,14 +4,17 @@
   import Button from "$lib/components/Button/Button.svelte"
   import Checkbox from "$lib/components/Checkbox/Checkbox.svelte"
   import Modal from "$lib/components/Modal/Modal.svelte"
+  import axios from "axios"
+  import Autocomplete from "./Autocomplete.svelte"
+  import {goto} from "$app/navigation"
 
   let form = $state({
-    uniqueNumber: null,
-    fullName: null,
+    uid: null,
+    full_name: null,
     phone: null,
     email: null,
     city: null,
-    restaurant: null,
+    restaurant_id: null,
     review: null,
     acceptance: {
       personal_info: false,
@@ -19,13 +22,34 @@
     }
   })
 
+  let {
+    data
+  } = $props()
+
+  let restaurants = $derived(data.restaurants.map(it => ({
+    title: it.title,
+    value: it.id
+  })))
+
+  let viewModalSubmitted = $state.raw()
+  function submit() {
+    axios.post('/_api/contest-register', form).then(() => {
+      viewModalSubmitted = true
+      setTimeout(() => {
+        goto('/')
+      }, 5000)
+    }).catch(() => {
+      alert('Небольшая проблема с сервером, попробуйте ещё раз')
+    })
+  }
+
   let canSubmit = $derived(
-    form.uniqueNumber && form.uniqueNumber?.length === 6
-    && form.fullName
+    form.uid && form.uid?.length === 6
+    && form.full_name
     && form.phone
     && form.email
     && form.city
-    && form.restaurant
+    && form.restaurant_id
     && form.review
     && form.acceptance.konkurs
     && form.acceptance.personal_info
@@ -56,12 +80,19 @@
 
   <hr>
 
+  {#if viewModalSubmitted}
+    <Modal --modal-height="200px">
+      <p>Вы успешно зарегистрировались, приятного аппетита!</p>
+      <p>Вы окажетесь на главной через 5 секунд</p>
+    </Modal>
+  {/if}
+
   <form action="">
     <label>Уникальный номер участника</label>
-    <CodeInput count={6} bind:value={form.uniqueNumber}/>
+    <CodeInput count={6} bind:value={form.uid}/>
 
     <label for="">ФИО</label>
-    <input bind:value={form.fullName} type="text" placeholder="ввод" required>
+    <input bind:value={form.full_name} type="text" placeholder="ввод" required>
 
     <label for="">Телефон</label>
     <input bind:value={form.phone} type="text" placeholder="ввод" required>
@@ -73,7 +104,7 @@
     <input bind:value={form.city} type="text" placeholder="ввод" required>
 
     <label for="">Ресторан</label>
-    <input bind:value={form.restaurant} type="text" placeholder="ввод">
+    <Autocomplete bind:value={form.restaurant_id} options={restaurants}/>
 
     <label for="">Оставьте отзыв</label>
     <input bind:value={form.review} type="text" placeholder="ввод" required>
@@ -122,7 +153,7 @@
     </div>
 
     <div class="btn">
-      <Button disabled={!canSubmit} dark filled>Зарегистрироватся</Button>
+      <Button onclick={submit} disabled={!canSubmit} dark filled>Зарегистрироватся</Button>
     </div>
   </form>
 </section>

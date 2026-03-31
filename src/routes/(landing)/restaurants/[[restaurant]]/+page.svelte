@@ -87,10 +87,10 @@
     clearTimeout(searchTimeout)
     searchTimeout = setTimeout(() => {
       toSearch()
-    }, 1000)
+    }, 500)
   }
 
-  let city = $state.raw(null)
+  let city = $state.raw(data.city)
   function selectCity(v) {
     toSearch()
   }
@@ -145,16 +145,10 @@
         </div>
 
         <div class="dropdowns">
-          <Dropdown title="Город" bind:value={city} onselect={selectCity} options={[
-            {
-              _t: 'Москва',
-              _v: 1
-            },
-            {
-              _t: 'Санкт-Петербург',
-              _v: 2
-            }
-          ]} />
+          <Dropdown title="Город" bind:value={city} onselect={selectCity} options={data.cities.map(it => ({
+            _t: it,
+            _v: it
+          }))} />
           <Dropdown title="Цена" bind:value={cost} onselect={selectCost} options={[
             {
               _t: 'От 2000',
