@@ -33,10 +33,9 @@ import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
         Зарегистрируйте его на сайте.<br>
         И, возможно, именно вы окажетесь на старте космического корабля.
       </p>
-    </div>
-
-    <div class="btn_restaurants">
-      <Button href="/restaurants">Выбрать ресторан</Button>
+      <div class="btn_restaurants">
+        <Button href="/restaurants">Выбрать ресторан</Button>
+      </div>
     </div>
   </div>
 </section>
@@ -47,13 +46,13 @@ import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
   #main_prize {
     @include scr.tablet-and-lower {
       background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, rgba(247, 248, 248, 0.6) 60px, #FFF 90px);
+
+      padding-top: 135px;
+      margin-top: 30px;
+      padding-bottom: 93px;
     }
 
-    padding-top: 135px;
-    margin-top: 30px;
-
     color: #1C212B;
-    padding-bottom: 93px;
 
     h2 {
       margin-top: 24px;
@@ -65,13 +64,29 @@ import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
       margin-right: auto;
 
       @include scr.desktop {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
+        justify-content: space-between;
         gap: 44px;
         color: #FFF;
-        max-width: 1024px;
+        max-width: 800px;
         padding: 0 100px 0 150px;
         box-sizing: content-box;
+
+        > *:first-child {
+          width: 282px;
+
+          p {
+            color: #FFFFFFB2;
+          }
+        }
+
+        > *:last-child {
+          width: 352px;
+
+          p {
+            color: #FFFFFFB2;
+          }
+        }
       }
     }
   }

@@ -218,7 +218,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 85svh;
+    height: 100svh;
     z-index: 21;
 
     transition: height;
@@ -270,8 +270,12 @@
       @include scr.desktop {
         margin-bottom: 15px;
       }
+
       @include scr.tablet-and-lower {
-        display: none;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
       }
     }
 

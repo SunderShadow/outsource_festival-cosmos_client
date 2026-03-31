@@ -10,10 +10,16 @@
 <style lang="scss">
   @use "$lib/scss/mixins/scr";
 
+  #mission {
+    @include scr.desktop {
+      margin-top: 24px;
+    }
+  }
   h2 {
     font-weight: 400;
     text-transform: uppercase;
     margin: 0 0 16px;
+    line-height: 44px;
   }
 
   p {
@@ -21,19 +27,12 @@
     color: var(--text-color-bright-bg);
     line-height: 16px;
 
+    margin: 0;
     @include scr.desktop {
-      margin-bottom: 0;
-
-      color: #FFFFFF;
+      color: #828A9D;
       font-size: 13px;
       line-height: 16px;
       text-transform: uppercase;
-    }
-  }
-
-  @include scr.desktop {
-    section {
-      width: 329px;
     }
   }
 </style>

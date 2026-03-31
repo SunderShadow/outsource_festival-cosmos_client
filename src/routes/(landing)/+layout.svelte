@@ -91,8 +91,8 @@
           return
         }
 
-        canGoNextPage = e.scroll === lenis.limit;
-        canGoPrevPage = e.scroll === 0;
+        canGoNextPage = Math.ceil(e.scroll) === lenis.limit;
+        canGoPrevPage = Math.ceil(e.scroll) === 0;
       })
     }
   }
@@ -239,8 +239,8 @@
 
     @include scr.desktop {
       z-index: calc(var(--header-z-index) + 1);
-      margin-top: var(--stepper-desktop-top-offset);
-      padding-top: 120px;
+      margin-top: calc(var(--stepper-desktop-top-offset) - 20px);
+      padding-top: 60px;
       top: 0;
       bottom: 0;
       left: 20px;

@@ -5,7 +5,7 @@
 </script>
 <script lang="ts">
   import Menu from "./Menu.svelte"
-  import LogoAlignLeft from "$lib/components/LogoAlignLeft.svelte"
+  import Logo from "$lib/components/Logo.svelte"
 
   let menuHidden = $state.raw(true)
 
@@ -16,7 +16,7 @@
 
 <header class:dark>
   <div class="logo">
-    <LogoAlignLeft />
+    <Logo />
   </div>
   <button aria-label="Открыть меню" onclick={() => {menuHidden = false}}>
     <svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">

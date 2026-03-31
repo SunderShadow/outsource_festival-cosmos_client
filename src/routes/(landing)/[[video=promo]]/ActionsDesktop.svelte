@@ -30,6 +30,9 @@ import Button from "$lib/components/Button/Button.svelte"
 
     justify-content: space-between;
 
+    @include scr.desktop {
+      max-width: 350px;
+    }
     :global .button {
       display: flex;
       max-width: fit-content;
@@ -44,23 +47,26 @@ import Button from "$lib/components/Button/Button.svelte"
     :global .button {
       padding: 10px 18px;
 
-      &:first-child {
-        width: 136px;
-        text-wrap: nowrap;
-        font-size: 10px;
-      }
-
-      &:nth-child(2) {
-        width: 176px;
-        text-wrap: nowrap;
-        font-size: 10px;
-      }
-
-        &:last-child {
-          flex-grow: 1;
-          max-width: 100%;
-          justify-content: space-between;
+      @include scr.tablet-and-lower {
+        &:first-child {
+          width: 136px;
+          text-wrap: nowrap;
+          font-size: 10px;
         }
+
+        &:nth-child(2) {
+          width: 176px;
+          text-wrap: nowrap;
+          font-size: 10px;
+        }
+      }
+
+      &:last-child {
+        flex-grow: 1;
+        max-width: 100%;
+        justify-content: space-between;
+        padding-left: 28px;
+      }
 
       @include scr.desktop {
         &:last-child {

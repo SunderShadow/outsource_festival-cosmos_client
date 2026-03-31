@@ -50,8 +50,6 @@
 
 <div
     class="bg"
-    style:--bg-mobile="url('{animation_bgMobile.img.src}')"
-    style:--bg-desktop="url('{animation_bgDesktop.img.src}')"
     class:hidden
     ontransitionend={nextBg}
 >
@@ -64,8 +62,8 @@
   <div class="text" onanimationend={hide}>
     <Logo />
     <div>
-      Г А С Т Р О Н О М И Ч Е С К И Й<br>
       Н А Ц И О Н А Л Ь Н Ы Й<br>
+      Г А С Т Р О Н О М И Ч Е С К И Й<br>
       Ф Е С Т И В А Л Ь<br>
     </div>
   </div>
@@ -220,15 +218,7 @@
     }
 
     &.hidden &-content {
-      height: 600px;
       opacity: 0;
-
-      & > div {
-        transform: translateX(100px);
-        @media (min-width: env.$tablet-width) {
-          transform: translate(-50%, -300px);
-        }
-      }
     }
 
     &-content {
@@ -305,16 +295,7 @@
     z-index: 100;
 
     transition: opacity 700ms;
-    background-color: #000;
-    background-size: cover;
-
-    @media (max-width: env.$tablet-width) {
-      background-image: var(--bg-mobile);
-    }
-
-    @media (min-width: env.$tablet-width) {
-      background-image: var(--bg-desktop);
-    }
+    background-color: #1C212B;
 
     &.hidden {
       opacity: 0;
@@ -379,8 +360,8 @@
       margin-left: auto;
       margin-right: auto;
 
-      width: auto;
-      height: 171px;
+      width: 185px;
+      height: 120px;
     }
 
     div {

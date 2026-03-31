@@ -8,30 +8,31 @@
   import GastronomyInstitute from "$lib/components/_logos/GastronomyInstitute.svelte"
   import ProstoCosmos from "$lib/components/_logos/ProstoCosmos.svelte"
   import Divider from "$lib/components/Divider.svelte"
+  import ActionsDesktop from "./ActionsDesktop.svelte"
 </script>
 
 <section id="partners">
-  <div class="logos_wrapper">
-    <div class="logos">
-      <Roscosmos />
-      <Poehaly65 />
-      <GastronomyInstitute />
-      <div class="prosto_cosmos"><ProstoCosmos /></div>
-      <div class="sber"><Sber /></div>
-      <div class="inkerman_hotels">
-        <div class="inkerman"><Inkerman /></div>
-        <div class="hotels"><CosmosHotels /></div>
-      </div>
-    </div>
+  <div class="actions">
+    <ActionsDesktop />
+  </div>
 
-    <div class="info_partners">
-      <Divider>
-        Информационные партнеры
-      </Divider>
+  <div class="logos all">
+    <Roscosmos />
+    <Poehaly65 />
+    <GastronomyInstitute />
+    <div class="prosto_cosmos"><ProstoCosmos /></div>
+    <div class="sber"><Sber /></div>
+    <div class="inkerman"><Inkerman /></div>
+    <div class="hotels"><CosmosHotels /></div>
+  </div>
 
-      <div class="logos partners">
-        <div class="sisoev"><Sisoev /></div>
-      </div>
+  <div class="info_partners">
+    <Divider>
+      Информационные партнеры
+    </Divider>
+
+    <div class="logos partners">
+      <div class="sisoev"><Sisoev /></div>
     </div>
   </div>
 
@@ -45,7 +46,7 @@
   </div>
 
   <div class="additional_info">
-    <span class="copyright">Copyright 2026 © Первые в космосе</span>
+    <span class="copyright">Все права защищены {new Date().getFullYear()} © Первые в космосе</span>
     <div class="divider"></div>
     <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
@@ -57,16 +58,16 @@
   @use "$lib/scss/mixins/scr";
 
   .info_partners {
-    --divider-color: #fff;
-    --divider-opacity: .5;
+    @include scr.desktop {
+      --divider-color: #fff;
+      --divider-opacity: .5;
+    }
   }
 
   .phone {
     display: block;
 
-    @include scr.tablet-and-lower {
-      text-align: center;
-    }
+    text-align: center;
 
     svg {
       position: relative;
@@ -74,50 +75,65 @@
 
       display: inline;
 
-      :global {
-        *[fill] {
-          fill: #FFF;
+      @include scr.desktop {
+        :global {
+          *[fill] {
+            fill: #FFF;
+          }
         }
       }
     }
 
     a {
-      color: #FFFFFF;
+      color: #1C212B;
       text-decoration: none;
       text-align: center;
       margin-left: 8px;
+
+      @include scr.desktop {
+        color: #FFFFFF;
+      }
     }
   }
 
   hr {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+
+    background-color: #828A9D33;
+    border: none;
+
     @include scr.desktop {
       display: none;
     }
-
-    position: relative;
-    background-color: #fff;
-    opacity: .3;
-
-    width: 100%;
-    height: 1px;
-    border: none;
-    margin-top: 18px;
-    margin-bottom: 18px;
   }
 
   .actions {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+
+    @include scr.desktop {
+      margin-bottom: 40px;
+      margin-top: 35px;
+    }
+
+    @include scr.tablet-and-lower {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .additional_info {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    gap: 8px;
 
     margin-top: 16px;
-    @include scr.tablet-and-lower {
+      @include scr.tablet-and-lower {
       flex-direction: column;
     }
 
@@ -143,12 +159,6 @@
     }
   }
 
-  .partners {
-    @include scr.desktop {
-      padding-bottom: 20px;
-    }
-  }
-
   .copyright {
     display: block;
   }
@@ -160,41 +170,30 @@
 
     margin-top: 24px;
 
-    @include scr.desktop {
-      gap: 16px;
-      max-width: 600px;
-    }
-
     @include scr.tablet-and-lower {
       justify-content: center;
     }
 
-    .inkerman_hotels {
-      display: flex;
-      gap: 24px;
-      width: 100%;
+    @include scr.desktop {
+      gap: 16px;
 
-      @include scr.tablet-and-lower {
-        justify-content: center;
+      .prosto_cosmos,
+      .sisoev,
+      .sber,
+      .inkerman,
+      .hotels {
+        :global svg *[fill]{
+          fill: #FFF;
+        }
       }
-    }
 
-    .prosto_cosmos,
-    .sisoev,
-    .sber,
-    .inkerman,
-    .hotels {
-      :global svg *[fill]{
-        fill: #FFF;
-      }
-    }
+      :global svg {
+        height: 23px;
+        width: fit-content;
 
-    :global svg {
-      height: 23px;
-      width: fit-content;
-
-      *[fill=black] {
-        fill: #FFF;
+        *[fill=black] {
+          fill: #FFF;
+        }
       }
     }
 
@@ -210,55 +209,25 @@
       width: fit-content;
     }
 
+
+    &.partners {
+      justify-content: center;
+    }
+
     &.partners :global svg {
       height: 30px;
     }
   }
 
   #partners {
-    max-width: 308px;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-direction: column;
 
-    @include scr.tablet {
-      max-width: 600px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    @include scr.desktop {
-      max-width: 1024px;
-      padding: 0 100px 0 150px;
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: content-box;
-    }
-  }
-
-  @include scr.desktop {
-    #partners {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logos {
-      order: 1;
-    }
-
-    .info_partners {
-      order: 2;
-    }
-    .actions {
-      order: 3;
-    }
-
-    .phone {
-      order: 4;
-      margin-top: 37px;
-    }
-
-    .additional_info {
-      order: 5;
-    }
+    .logos.all {order: 1}
+    .info_partners {order: 2}
+    .actions {order: 3}
+    hr {order: 4}
+    .phone {order: 5}
+    .additional_info {order: 6}
   }
 </style>

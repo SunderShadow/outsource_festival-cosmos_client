@@ -5,9 +5,9 @@
 </script>
 
 <div class="divider">
-  <div></div>
+<!--  <div></div>-->
   <span>{@render children()}</span>
-  <div></div>
+<!--  <div></div>-->
 </div>
 
 <style lang="scss">
@@ -40,6 +40,8 @@
 
       text-wrap: nowrap;
       text-align: center;
+      margin-left: auto;
+      margin-right: auto;
 
       color: var(--divider-color, #828A9D);
       width: 188px;

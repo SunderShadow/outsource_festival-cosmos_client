@@ -68,15 +68,11 @@
 
   <main>
     <div class="content-wrapper">
-      <div class="inline-desktop">
-        <FirstInCosmos />
-
-        <hr>
-
-        <Mission />
-      </div>
+      <FirstInCosmos />
 
       <hr>
+
+      <Mission />
 
       <Partners />
     </div>
@@ -203,7 +199,7 @@
     }
 
     @include scr.desktop {
-      max-width: 718px;
+      max-width: 720px;
       margin-top: 142px;
       margin-left: 136px;
       color: #FFFFFF;

@@ -41,11 +41,11 @@
   </div>
 
   <div class="additional_info">
-    <span class="copyright">Copyright {new Date().getFullYear()} © Первые в космосе</span>
+    <span class="copyright">Все права защищены {new Date().getFullYear()} © Первые в космосе</span>
     <div class="divider"></div>
     <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
-    <a href=""><b>Положение о конкурсе</b></a>
+    <a href="">Положение о конкурсе</a>
   </div>
 </section>
 
@@ -101,7 +101,7 @@
   .additional_info {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    gap: 8px;
 
     margin-top: 16px;
     padding-bottom: 15px;

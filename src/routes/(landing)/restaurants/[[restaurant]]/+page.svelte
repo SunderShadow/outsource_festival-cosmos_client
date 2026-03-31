@@ -2,7 +2,6 @@
   import Article from "./Article.svelte"
   import Restaurant from "./Restaurant.svelte"
 
-  import Button from "$lib/components/Button/Button.svelte"
   import {getContext, onMount} from "svelte"
   import {detect as swipeDetect} from "$lib/tools/swipe-detect"
   import {browser} from "$app/environment"
@@ -49,13 +48,15 @@
     data
   } = $props()
 
-  let articlesPageTotal = $derived(Math.ceil(data.restaurants.length ?? 0 / perPage))
+  const articleWidth = 315 // px
+
+  let articlesPageTotal = $derived(Math.ceil((data.restaurants.length ?? 0) / perPage))
   let articlesPage = $state.raw(0)
 
   function scrollArticles(e: WheelEvent) {
     e.stopPropagation()
 
-    const maxPage = articlesPageTotal - 4
+    const maxPage = articlesPageTotal - Math.floor(window.innerWidth / articleWidth) + 1
     if (e.deltaY < 0 && articlesPage > 0) {
       articlesPage -= 1
     }
@@ -75,27 +76,28 @@
 
   let searchStr = $state.raw(data.searchValue)
   let searchTimeout
+
+  function toSearch() {
+    goto(getQueryStr(), {
+      invalidateAll: true,
+      noScroll: true
+    })
+  }
   function search(e) {
     clearTimeout(searchTimeout)
     searchTimeout = setTimeout(() => {
-      goto(getQueryStr(), {
-        invalidateAll: true
-      })
-    }, 300)
+      toSearch()
+    }, 1000)
   }
 
   let city = $state.raw(null)
   function selectCity(v) {
-    goto(getQueryStr(), {
-      invalidateAll: true
-    })
+    toSearch()
   }
 
   let cost = $state.raw(null)
   function selectCost(v) {
-    goto(getQueryStr(), {
-      invalidateAll: true
-    })
+    toSearch()
   }
 </script>
 
@@ -114,8 +116,6 @@
       Фестиваль объединяет 18 городов России, каждый из которых внес вклад в развитие космонавтики, науки, инженерии
       и подготовки кадров.
     </p>
-
-    <Button white href="">Смотреть рестораны</Button>
 
     <div id="restaurants" class:hidden={data.restaurant}>
       <div class="filters">
@@ -176,7 +176,7 @@
 
   <div class="articles" bind:this={articlesEl} style:--page={articlesPage}>
     <div class="articles-inner_wrapper" onwheel={scrollArticles}>
-      <div class="tape">
+      <div class="tape" ontouchstart={e => {e.stopPropagation()}}>
         {#each data.restaurants as article}
           <Article {article} />
         {/each}
@@ -249,7 +249,8 @@
   h1 {
     font-size: 24px;
     font-weight: 400;
-    margin-top: 0;
+    line-height: 66px;
+    margin: 0;
 
     color: #FFFFFF;
 
@@ -259,7 +260,7 @@
   }
 
   p {
-    margin-top: 20px;
+    margin-top: 5px;
     font-size: 13px;
 
     line-height: 24px;
@@ -267,9 +268,12 @@
     color: #FFFFFF;
 
     @include scr.desktop {
-      font-size: 19.5px;
-      margin-bottom: 2em;
+      font-size: 16px;
+      text-transform: uppercase;
       max-width: 423px;
+      color: #FFFFFFB2;
+
+      margin-bottom: 70px;
     }
   }
 
@@ -333,7 +337,7 @@
     --gap-x: calc(100vw - 308px);
     --row-count: 4;
 
-    height: calc((var(--article-height) + var(--gap-y)) * var(--row-count) + 70px);
+    height: calc((var(--article-height) + var(--gap-y)) * var(--row-count) + 90px);
     overflow: hidden;
     position: relative;
     margin-top: 12px;
@@ -393,13 +397,15 @@
 
     .pagination {
       display: flex;
+      justify-content: center;
       gap: 8px;
 
       max-width: 80%;
+      width: 100%;
       flex-wrap: wrap;
 
       position: absolute;
-      bottom: 36px;
+      top: calc(100% - 80px);
       left: 50%;
       transform: translateX(-50%);
 
@@ -443,7 +449,7 @@
 
   .title {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: "Poppins", sans-serif;
 
     margin-left: 8px;

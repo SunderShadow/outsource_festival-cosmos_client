@@ -73,7 +73,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 44px;
-      max-width: 1024px;
+      max-width: 800px;
       padding: 0 100px 0 150px;
       box-sizing: content-box;
     }
