@@ -196,9 +196,6 @@
       background-image: var(--bg-desktop);
 
       height: 100vh;
-      @media (min-width: 1600px) {
-        background-position: center -1300px;
-      }
     }
 
     opacity: 1;
