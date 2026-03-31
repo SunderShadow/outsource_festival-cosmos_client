@@ -70,6 +70,10 @@
     font-family: Roboto, sans-serif;
     font-weight: 700;
 
+    @media (max-width: 345px) {
+      width: 36px;
+      height: 36px;
+    }
     &:focus {
       outline: 1px solid #1C212B;
     }
