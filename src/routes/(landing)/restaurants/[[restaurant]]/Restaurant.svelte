@@ -289,16 +289,14 @@
 
       &::before {
         content: '';
-        height: 200px;
-        width: 100%;
         position: absolute;
-        bottom: 0;
+        bottom: 5px;
         left: 0;
         right: 0;
-        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2));
+        top: 0;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
         border-bottom-left-radius: inherit;
         border-bottom-right-radius: inherit;
-        backdrop-filter:  blur(3px);
       }
     }
 
