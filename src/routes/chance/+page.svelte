@@ -61,22 +61,22 @@
     <CodeInput count={6} bind:value={form.uniqueNumber}/>
 
     <label for="">ФИО</label>
-    <input bind:value={form.fullName} type="text" placeholder="ввод">
+    <input bind:value={form.fullName} type="text" placeholder="ввод" required>
 
     <label for="">Телефон</label>
-    <input bind:value={form.phone} type="text" placeholder="ввод">
+    <input bind:value={form.phone} type="text" placeholder="ввод" required>
 
     <label for="">Почта</label>
-    <input bind:value={form.email} type="text" placeholder="ввод">
+    <input bind:value={form.email} type="text" placeholder="ввод" required>
 
     <label for="">Город</label>
-    <input bind:value={form.city} type="text" placeholder="ввод">
+    <input bind:value={form.city} type="text" placeholder="ввод" required>
 
     <label for="">Ресторан</label>
     <input bind:value={form.restaurant} type="text" placeholder="ввод">
 
     <label for="">Оставьте отзыв</label>
-    <input bind:value={form.review} type="text" placeholder="ввод">
+    <input bind:value={form.review} type="text" placeholder="ввод" required>
 
     <div class="policy_checks">
       {#if personalInfoAcceptanceModalVisible}

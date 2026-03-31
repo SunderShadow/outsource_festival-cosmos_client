@@ -161,35 +161,6 @@
           </div>
         </section>
       {/if}
-      <section id="reviews">
-        <h2>Отзывы</h2>
-        {#if selectedMeal}
-          <div class="subtitle">{selectedMeal.chef_name}</div>
-        {/if}
-
-        <div class="statistics">
-          <div class="item">
-            <div class="name">Атмосфера ресторана</div>
-            <div class="bar" style:--value="{restaurant.rating.atmosphere / 10 * 100}%"></div>
-            <div class="value">{restaurant.rating.atmosphere}</div>
-          </div>
-          <div class="item">
-            <div class="name">Вкус сета</div>
-            <div class="bar" style:--value="{restaurant.rating.taste / 10 * 100}%"></div>
-            <div class="value">{restaurant.rating.taste}</div>
-          </div>
-          <div class="item">
-            <div class="name">Подача</div>
-            <div class="bar" style:--value="{restaurant.rating.serving / 10 * 100}%"></div>
-            <div class="value">{restaurant.rating.serving}</div>
-          </div>
-          <div class="item">
-            <div class="name">Обслуживание</div>
-            <div class="bar" style:--value="{restaurant.rating.service / 10 * 100}%"></div>
-            <div class="value">{restaurant.rating.service}</div>
-          </div>
-        </div>
-      </section>
     </div>
 
     {#if restaurant.meals.length > 0}
