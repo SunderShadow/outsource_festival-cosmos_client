@@ -18,7 +18,7 @@
 </script>
 
 <article>
-  <img src={article.thumbnails.card} alt="">
+  <img src={article.thumbnails.card} alt="" loading="lazy">
   <div class="content">
     <a href="/restaurants/{article.slug}" data-sveltekit-noscroll></a>
     <h2 class:small={smallTitle}>{article.title}</h2>
