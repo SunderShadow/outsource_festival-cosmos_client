@@ -236,9 +236,6 @@
     height: 100dvh;
     z-index: 21;
 
-    transition: height;
-    transition-duration: 300ms;
-
     overflow: auto;
     scroll-behavior: smooth;
     display: flex;
