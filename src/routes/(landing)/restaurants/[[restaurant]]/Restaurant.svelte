@@ -233,7 +233,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100lvh;
+    height: 100dvh;
     z-index: 21;
 
     transition: height;
