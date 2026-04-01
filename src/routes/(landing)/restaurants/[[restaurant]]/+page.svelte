@@ -174,7 +174,11 @@
     </div>
   </div>
 
-  <div class="articles" bind:this={articlesEl} style:--page={articlesPage} ontouchstart={e => {e.stopPropagation()}}>
+  <div class="articles"
+       bind:this={articlesEl}
+       style:--page={articlesPage}
+       ontouchstart={e => {e.stopPropagation(); e.preventDefault()}}
+       ontouchmove={e => {e.stopPropagation(); e.preventDefault()}}>
     <div class="articles-inner_wrapper">
       <div class="tape">
         {#each data.restaurants as article}

@@ -145,8 +145,8 @@
 
       {#if selectedMeal}
         <section id="meal_preview">
-          <img src={selectedMeal.thumbnails.full} alt="">
-          <div class="subtitle">{selectedMeal.chef_name}</div>
+          <img src={restaurant.thumbnails.chef} alt="">
+          <div class="subtitle">{restaurant.chef_name}</div>
           <h2 class="title">{selectedMeal.name}</h2>
 
           <div class="description">
@@ -533,8 +533,6 @@
       @include scr.tablet-and-lower {
         width: max(230px, 60%);
       }
-
-      max-height: 240px;
 
       margin-left: auto;
       margin-right: auto;
