@@ -74,27 +74,14 @@
     })
     photoSwipe.on('uiRegister', () => {
       photoSwipe.ui.registerElement({
-        name: 'title',
+        name: 'info',
         isButton: false,
         appendTo: 'root',
         html: '',
         onInit(element, pswp) {
           pswp.on('change', () => {
             const thumbnail = photoSwipe.currSlide.data.thumbnail
-            element.innerHTML = thumbnail.name
-          })
-        },
-      })
-
-      photoSwipe.ui.registerElement({
-        name: 'description',
-        isButton: false,
-        appendTo: 'root',
-        html: '',
-        onInit(element, pswp) {
-          pswp.on('change', () => {
-            const thumbnail = photoSwipe.currSlide.data.thumbnail
-            element.innerHTML = thumbnail.description
+            element.innerHTML = `<h2>${thumbnail.name}</h2><p>${thumbnail.description}</p>`
           })
         },
       })
@@ -268,35 +255,46 @@
     }
   }
 
-  :global .pswp__title {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    color: #FFF;
-    transform: translateX(-50%);
-    font-family: Manrope, sans-serif;
-    @include scr.desktop {
-      top: 50px;
+  :global {
+    .pswp__img {
+      @include scr.tablet-and-lower {
+        transform: translateY(calc((100% - 100vh) / 2));
+      }
+
+      @include scr.desktop {
+        transform: translateX(calc((100% - 100vw) / 2));
+      }
     }
-  }
 
-  :global .pswp__description {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    color: #FFF;
-    transform: translateX(-50%);
+    .pswp__info {
+      position: absolute;
+      font-size: 16px;
 
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 12px;
-    font-family: Manrope, sans-serif;
+      color: #FFF;
 
-    width: 100%;
-    max-width: 1000px;
+      font-family: Manrope, sans-serif;
 
-    @include scr.desktop {
-      bottom: 50px;
+      padding: 20px;
+
+      h2 {
+        font-weight: 600;
+        margin: 0;
+      }
+
+      @include scr.tablet-and-lower {
+        bottom: 0;
+        height: calc(100vh - min(100vh, 100vw));
+        width: 100%;
+
+        p {
+          font-size: 10px;
+        }
+      }
+      @include scr.desktop {
+        right: 0;
+        top: 40px;
+        width: calc(100vw - min(100vh, 100vw));
+      }
     }
   }
 
