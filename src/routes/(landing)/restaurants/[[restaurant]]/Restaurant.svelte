@@ -379,7 +379,7 @@
     @include scr.desktop {
       &::after {
         content: '';
-        background: linear-gradient(90deg, rgba(0, 0, 0, .75), rgba(0, 0, 0, .25));
+        background: linear-gradient(90deg, #00000003, #00000000);
         border-radius: 20px;
         position: absolute;
         top: 0;
@@ -390,7 +390,7 @@
       }
       &::before {
         content: '';
-        background: linear-gradient(rgba(0, 0, 0, .25), rgba(0, 0, 0, .98));
+        background: linear-gradient(#00000040,#000000aa);
         border-radius: 20px;
         position: absolute;
         top: 0;

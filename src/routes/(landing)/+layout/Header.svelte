@@ -15,9 +15,9 @@
 </script>
 
 <header class:dark>
-  <div class="logo">
+  <a href="/" class="logo">
     <Logo />
-  </div>
+  </a>
   <button aria-label="Открыть меню" onclick={() => {menuHidden = false}}>
     <svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="1.5" y1="1.5" x2="23.5" y2="1.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
