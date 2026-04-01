@@ -229,11 +229,11 @@
   @use "$lib/scss/mixins/scr";
 
   .restaurant {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100dvh;
+    height: 100vh;
     z-index: 21;
 
     overflow: auto;
