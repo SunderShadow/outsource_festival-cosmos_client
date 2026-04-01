@@ -233,7 +233,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100svh;
+    height: 100lvh;
     z-index: 21;
 
     transition: height;
@@ -269,13 +269,16 @@
     .pswp__info {
       position: absolute;
       font-size: 16px;
+      max-height: 80vh;
 
+      overflow: auto;
       color: #FFF;
 
       font-family: Manrope, sans-serif;
 
       padding: 20px;
 
+      z-index: -1;
       h2 {
         font-weight: 600;
         margin: 0;
@@ -788,6 +791,7 @@
     }
 
     article {
+      cursor: pointer;
       position: relative;
       aspect-ratio: 1 / 1;
 
