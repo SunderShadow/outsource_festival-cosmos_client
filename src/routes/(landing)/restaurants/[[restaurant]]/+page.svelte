@@ -213,7 +213,7 @@
 
     :global svg {
       height: 16px;
-      width: fit-content;
+      width: auto;
       *[fill=black] {
         fill: #FFF;
       }

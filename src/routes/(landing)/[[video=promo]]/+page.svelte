@@ -119,7 +119,7 @@
 
     :global svg {
       height: 16px;
-      width: fit-content;
+      width: auto;
     }
 
     @include scr.tablet-and-lower {

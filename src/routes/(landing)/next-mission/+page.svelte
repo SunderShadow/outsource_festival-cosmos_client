@@ -83,7 +83,7 @@
 
     :global svg {
       height: 16px;
-      width: fit-content;
+      width: auto;
 
       @include scr.desktop {
         height: 32px;
