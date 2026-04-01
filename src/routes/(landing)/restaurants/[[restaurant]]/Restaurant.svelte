@@ -275,6 +275,9 @@
     color: #FFF;
     transform: translateX(-50%);
     font-family: Manrope, sans-serif;
+    @include scr.desktop {
+      top: 50px;
+    }
   }
 
   :global .pswp__description {
@@ -291,6 +294,10 @@
 
     width: 100%;
     max-width: 1000px;
+
+    @include scr.desktop {
+      bottom: 50px;
+    }
   }
 
   .drag-area {
