@@ -4,6 +4,8 @@
   import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp&quality=100"
   import NewsList from "./NewsList.svelte"
   import Scrollbar from "$lib/components/Scrollbar/Scrollbar.svelte"
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
 
   let {
     data
@@ -12,7 +14,6 @@
   let newsList = $derived(data.manyNews)
   let expanded = $state.raw(false)
 
-  let scrollbarVisible = $state.raw(false)
   let percentScrolled = $state.raw()
 </script>
 
@@ -26,7 +27,7 @@
 </svelte:head>
 
 <div class="scrollbar">
-  <Scrollbar bind:percentScrolled />
+  <Scrollbar bind:percentScrolled --scrollbar-thumb-color="#FFF" --scrollbar-bg-color="#828A9D"/>
 </div>
 
 <div
@@ -36,6 +37,7 @@
 >
   <main>
     <div class="content">
+      <div class="top-logos"><Roscosmos /><Poehaly65 /></div>
       <h1>НОВОСТИ ФЕСТИВАЛЯ</h1>
       <p>
         В этом разделе публикуются новости проекта, интервью шеф-поваров, репортажи из городов и ключевые события фестиваля.
@@ -59,6 +61,33 @@
 <style lang="scss">
   @use "$lib/env";
   @use "$lib/scss/mixins/scr";
+
+  .top-logos {
+    height: 16px;
+    margin-bottom: 10px;
+
+    display: flex;
+    gap: 17px;
+
+    :global svg {
+      height: 16px;
+      width: fit-content;
+
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
+
+    @include scr.tablet-and-lower {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include scr.desktop {
+      margin-bottom: 10px;
+    }
+  }
 
   .scrollbar {
     position: absolute;
@@ -101,11 +130,12 @@
       left: 0;
       bottom: 0;
       right: 0;
+      z-index: -1;
 
       background-image: linear-gradient(180deg, transparent 24.86%, transparent 50%, #FFF 50%);
 
       @include scr.desktop {
-        background-image: linear-gradient(90deg, transparent 0%, transparent 75.14%, #FFF -354px);
+        display: none;
       }
     }
   }

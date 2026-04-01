@@ -21,6 +21,8 @@
   import FirstInCosmos from "./FirstInCosmos.svelte"
   import Partners from "./Partners.svelte"
   import Mission from "./Mission.svelte"
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
 
   const config = getContext('layout-config')
 
@@ -64,6 +66,8 @@
 
   <main>
     <div class="content-wrapper">
+      <div class="top-logos"><Roscosmos /><Poehaly65 /></div>
+
       <FirstInCosmos />
 
       <hr>
@@ -103,6 +107,34 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+
+  .top-logos {
+    height: 16px;
+
+    display: flex;
+    gap: 17px;
+    margin-bottom: 4px;
+
+    :global svg {
+      height: 16px;
+      width: fit-content;
+    }
+
+    @include scr.tablet-and-lower {
+      margin-left: -4px;
+    }
+
+    @include scr.desktop {
+      margin-bottom: 10px;
+
+      :global svg {
+
+        *[fill=black] {
+          fill: #FFF;
+        }
+      }
     }
   }
 
@@ -162,7 +194,8 @@
     background-position: top right;
 
     @include scr.mobile {
-      background-position: top left;
+      background-position: center;
+      background-size: contain;
       background-image: var(--bg-mobile);
     }
 

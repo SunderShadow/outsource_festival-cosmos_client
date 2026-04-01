@@ -24,15 +24,14 @@
 
   p {
     font-size: 13px;
-    color: var(--text-color-bright-bg);
+    color: #828A9D;
     line-height: 16px;
+    text-transform: uppercase;
 
     margin: 0;
     @include scr.desktop {
-      color: #828A9D;
       font-size: 13px;
       line-height: 16px;
-      text-transform: uppercase;
     }
   }
 </style>

@@ -12,6 +12,8 @@
 
   import Partners from "./Partners.svelte"
   import {getContext} from "svelte"
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
 
   const config = getContext('layout-config')
   config.darkHeader = false
@@ -36,6 +38,7 @@
     style:--desktop-mask-image="url('{bgMaskDesktop}')"
   >
     <div class="info">
+      <div class="top-logos"><Roscosmos /><Poehaly65 /></div>
       <Logo />
       <div class="sub-text">ПРИНЯТЬ УЧАСТИЕ В ФЕСТИВАЛЕ 2027</div>
       <Button href="" white>Оставить заявку на участие</Button>
@@ -67,17 +70,51 @@
   @use "$lib/env";
   @use "$lib/scss/mixins/scr";
 
+  .top-logos {
+    height: 16px;
+    margin-bottom: 20px;
+
+    display: flex;
+    gap: 17px;
+
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    :global svg {
+      height: 16px;
+      width: fit-content;
+
+      @include scr.desktop {
+        height: 32px;
+      }
+
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
+
+    @include scr.desktop {
+      margin-bottom: 30px;
+    }
+  }
+
   .info {
     position: absolute;
-    bottom: 90px;
+    bottom: 80px;
     left: 0;
+
+    @media (min-width: 600px) {
+      bottom: 120px;
+    }
+
+    @include scr.desktop {
+      bottom: 80px;
+    }
 
     width: 100%;
 
-    @include scr.desktop {
-    }
-
-    :global svg {
+    :global > svg {
       display: block;
       width: 158px;
       height: 103px;
@@ -105,7 +142,6 @@
       color: #fff;
     }
 
-
     :global .button {
       display: block;
       margin-top: 20px;
@@ -124,7 +160,6 @@
       border-radius: 32px;
       padding-bottom: 14px;
       padding-top: 14px;
-
     }
   }
 
@@ -168,10 +203,11 @@
 
   .top {
     position: relative;
-    height: 480px;
+    height: 585px;
 
     // Background
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 
     @include scr.tablet-and-lower {

@@ -1,114 +1,260 @@
 <script lang="ts">
-  import bgMobile from "./assets/bg_top.png?enhanced&format=webp&quality=100"
+  import bgMobile from "./assets/bg.png?enhanced&format=webp"
+  import bgTablet from "./assets/bg-desktop.jpg?enhanced&format=webp&w=768&h=1900&quality=100"
+  import bgDesktop from "./assets/bg-desktop.jpg?enhanced&format=webp&w=1920&h=2900&quality=100"
 
-  import {desktopWidth} from "$lib/_env"
-  import Souz from "./Souz/Souz.svelte"
-  import {getContext} from "svelte"
+  import Countdown from "$lib/components/Countdown/Countdown.svelte"
+
+  import {desktopWidth, mobileWidth} from "$lib/_env"
+  import ThreeStepsToCosmodrome from "./ThreeStepsToCosmodrome.svelte"
+  import Partners from "./Partners.svelte"
   import MainPrize from "./MainPrize.svelte"
-
-  const config = getContext('layout-config')
-  config.darkHeader = false
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
 </script>
 
 <svelte:head>
-  <title>Три шага к космодрому</title>
-  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="width < {desktopWidth}">
+  <title>Главный приз</title>
+  <link rel="preload" as="image" href={bgMobile.img.src} fetchpriority="high" media="(width < {desktopWidth})">
+  <link rel="preload" as="image" href={bgTablet.img.src} fetchpriority="high" media="(width < {desktopWidth}) and (width > {mobileWidth})">
+  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="(width > {desktopWidth})">
 </svelte:head>
 
-<div
+<section
     class="wrapper"
+    style:--bg-desktop="url('{bgDesktop.img.src}')"
+    style:--bg-tablet="url('{bgDesktop.img.src}')"
     style:--bg-mobile="url('{bgMobile.img.src}')"
 >
-  <main>
+  <div class="content">
+    <div class="top-logos"><Roscosmos /><Poehaly65 /></div>
+
+    <h1>
+      <span>ДО ЗАПУСКА КОСМИЧЕСКОГО КОРАБЛЯ</span>
+      <br>
+      <span>СОЮЗ МС-29</span>
+    </h1>
+
+    <Countdown />
+
+    <ThreeStepsToCosmodrome />
+
     <div class="main-prize">
+      <hr style="">
+
       <MainPrize />
     </div>
 
-    <Souz />
-  </main>
-</div>
+    <div class="partners">
+      <Partners />
+    </div>
+  </div>
+</section>
 
 <style lang="scss">
   @use "$lib/env";
   @use "$lib/scss/mixins/scr";
 
-  .main-prize {
+  .wrapper {
+    color: #FFF;
+  }
+
+  .top-logos {
+    height: 16px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+    display: flex;
+    gap: 17px;
+
+    :global svg {
+      height: 16px;
+      width: fit-content;
+
+      @include scr.desktop {
+        height: 32px;
+      }
+
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
+
     @include scr.desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  .partners {
+    padding-bottom: 46px;
+    background: linear-gradient(180deg, rgba(31, 36, 47, 0) 0%, #1F2533 100%);
+
+    @include scr.tablet-and-lower {
+      margin-top: 87px;
+    }
+  }
+
+  #desktop_logos {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include scr.tablet-and-lower {
       display: none;
     }
   }
+  hr {
+    border-color: #FFFFFF33;
+    padding-left: -50px;
+    max-width: 965px;
+    margin: 44px auto;
+  }
 
   .wrapper {
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: #FFF;
-
-    @include scr.tablet-and-lower {
-      background-image: var(--bg-mobile);
-    }
-  }
-
-  main {
-    @include scr.tablet-and-lower {
-      padding-top: calc(389px - calc(375px - 100vw));
-    }
-
-    color: var(--text-color-dark-bg);
-  }
-
-  #three-steps-to-cosmodrome {
-    --circle-offset: 25px;
     position: relative;
+    background-repeat: no-repeat;
+    padding-top: 150px;
 
-    @media (min-width: 400px) {
-      --circle-offset: 30px;
+    :global {
+      #three-steps-to-cosmodrome {
+        margin-top: 65px;
+      }
     }
 
-    @media (min-width: 450px) {
-      --circle-offset: 35px;
+    @include scr.desktop {
+      background-image: var(--bg-desktop);
+      background-position: 42% -700px;
+      background-size: 150%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(#000, .2);
+        background-position: 42% -700px;
+      }
     }
 
-    @media (min-width: 550px) {
-      --circle-offset: 55px;
-
-      margin-top: 30px;
+    @include scr.tablet {
+      background-image: linear-gradient(rgba(#000, .35) 400px, rgba(#000, .1)), var(--bg-tablet);
+      background-position: 45% -200px;
     }
 
-    @media (min-width: 750px) {
-      margin-bottom: -30px;
+    @include scr.mobile {
+      background-image: linear-gradient(rgba(#000, .35) 400px, rgba(#000, .1)), var(--bg-mobile);
+      background-position: top center;
     }
-
-    @media (min-width: 850px) {
-      --circle-offset: 85px;
-
-      margin-top: 100px;
-    }
-
-    .content {
-      position: relative;
-      max-width: 282px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-
-      z-index: 1;
-    }
-
   }
 
-  h2 {
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: -3%;
+  .content {
+    position: relative;
+    padding-top: 84px;
 
-    line-height: 40px;
-    margin: 0;
+    @include scr.desktop {
+      padding-top: 0;
+    }
+  }
+
+  h1 {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+
+    margin-bottom: 26px;
+    @include scr.desktop {
+      font-size: 32px;
+    }
+
+    span:last-of-type {
+      font-weight: 600;
+      font-size: 2em;
+    }
+  }
+
+  .logos {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include scr.tablet-and-lower {
+      justify-content: center;
+    }
+
+    @include scr.desktop {
+      gap: 16px;
+      max-width: 700px;
+    }
+
+    .inkerman :global svg {
+      height: 10px;
+    }
+    .cosmos :global svg {
+      height: 18px;
+    }
+
+    .prosto_cosmos,
+    .sber,
+    .inkerman,
+    .hotels {
+      :global svg *[fill]{
+        fill: #FFF;
+      }
+    }
+
+    :global svg {
+      height: 23px;
+      width: fit-content;
+
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
+
+    &.partners :global svg {
+      height: 30px;
+    }
   }
 
   p {
     margin-top: 20px;
     font-size: 13px;
-    line-height: 16px;
-    margin-bottom: 0;
+  }
+
+  .decoration {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+
+    @include scr.desktop {
+      bottom: -6px;
+    }
+
+    width: 100%;
+
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+
+    img {
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 20vh;
+
+      @include scr.tablet-and-lower {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 </style>

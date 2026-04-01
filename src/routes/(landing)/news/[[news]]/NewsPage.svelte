@@ -34,7 +34,6 @@
   let lenis: Lenis
 
   let percentScrolled = $state.raw()
-  let scrollbarVisible = $state.raw(false)
   onMount(() => {
     lenis = new Lenis({
       autoRaf: true,
@@ -85,7 +84,7 @@
       </svg>
     </a>
 
-    <h2>Consequat</h2>
+    <h2>{news.title}</h2>
     <time>{dateFormatter.format(new Date(news.created_at))}</time>
     <div class="content">
       {#if socialLinks.length}
@@ -145,13 +144,27 @@
 
     @media (min-width: $inline-container-scr-width) {
       display: flex;
-      height: 100svh;
-      padding: 0;
+      border-radius: 16px;
+
+
+      padding: 15px;
+
+      box-shadow: 0 0 50vw rgba(0, 0, 0, 1);
+
+      @include scr.desktop {
+        height: 80svh;
+        width: 80vw;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
 
       img {
         object-fit: cover;
         height: 100%;
-        border-radius: 0;
+
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
       }
     }
 
@@ -192,7 +205,6 @@
 
     @media (min-width: $inline-container-scr-width) {
       width: min(100%, 459px);
-      height: 100vh;
       overflow-y: auto;
 
       &::-webkit-scrollbar {

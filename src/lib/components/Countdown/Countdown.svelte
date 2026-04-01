@@ -57,6 +57,7 @@
     justify-content: center;
     align-items: center;
     background: #1C212B;
+    color: #FFF;
 
     @media (min-width: 650px) {
       width: 84px;

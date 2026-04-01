@@ -8,6 +8,9 @@
   import {goto} from "$app/navigation"
   import mapSvgImg from "./assets/map.svg?no-inline"
   import Dropdown from "$lib/components/Dropdown/Dropdown.svelte"
+  import Roscosmos from "$lib/components/_logos/Roscosmos.svelte"
+  import Poehaly65 from "$lib/components/_logos/Poehaly65.svelte"
+  import Button from "$lib/components/Button/Button.svelte"
 
   let articlesEl = $state.raw()
 
@@ -111,11 +114,14 @@
   </div>
 
   <div class="content">
+    <div class="top-logos"><Roscosmos /><Poehaly65 /></div>
     <h1>ГЕОГРАФИЯ ФЕСТИВАЛЯ</h1>
     <p>
       Фестиваль объединяет 18 городов России, каждый из которых внес вклад в развитие космонавтики, науки, инженерии
       и подготовки кадров.
     </p>
+
+    <Button white href="#restaurants">Смотреть рестораны</Button>
 
     <div id="restaurants" class:hidden={data.restaurant}>
       <div class="filters">
@@ -168,9 +174,9 @@
     </div>
   </div>
 
-  <div class="articles" bind:this={articlesEl} style:--page={articlesPage}>
-    <div class="articles-inner_wrapper" onwheel={scrollArticles}>
-      <div class="tape" ontouchstart={e => {e.stopPropagation()}}>
+  <div class="articles" bind:this={articlesEl} style:--page={articlesPage} ontouchstart={e => {e.stopPropagation()}}>
+    <div class="articles-inner_wrapper">
+      <div class="tape">
         {#each data.restaurants as article}
           <Article {article} />
         {/each}
@@ -194,9 +200,27 @@
 
   .wrapper {
     background-color: #95A9BB;
+    @include scr.desktop {
+      min-height: 100vh;
+    }
+  }
+
+  .top-logos {
+    height: 16px;
+
+    display: flex;
+    gap: 17px;
+
+    :global svg {
+      height: 16px;
+      width: fit-content;
+      *[fill=black] {
+        fill: #FFF;
+      }
+    }
 
     @include scr.desktop {
-      height: 100vh;
+      margin-bottom: 10px;
     }
   }
 
@@ -331,13 +355,21 @@
     --gap-x: calc(100vw - 308px);
     --row-count: 4;
 
-    height: calc((var(--article-height) + var(--gap-y)) * var(--row-count) + 90px);
-    overflow: hidden;
     position: relative;
     margin-top: 12px;
 
+    :global article {
+      width: var(--article-width);
+    }
+
+    @include scr.tablet-and-lower {
+      height: calc((var(--article-height) + var(--gap-y)) * var(--row-count) + 90px);
+      overflow: hidden;
+    }
+
     @include scr.desktop {
       height: auto;
+      --article-width: 100%;
     }
 
     &-inner_wrapper {
@@ -353,6 +385,7 @@
         padding-left: 185px;
         overflow-x: hidden;
         padding-right: 20px;
+        padding-bottom: 20px;
 
         &::-webkit-scrollbar {
           scrollbar-width: thin;
@@ -362,16 +395,27 @@
 
     .tape {
       transform: translateX(calc(-1 * var(--page) * (var(--article-width) + var(--gap-x))));
-      width: max-content;
+      width: 100%;
 
       display: grid;
-      grid-template-rows: repeat(4, var(--article-height));
-      grid-auto-flow: column;
       gap: var(--gap-y) var(--gap-x);
 
+      @include scr.tablet-and-lower {
+        grid-template-rows: repeat(4, var(--article-height));
+        grid-auto-flow: column;
+      }
+
       @include scr.desktop {
-        display: flex;
-        --gap-x: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+
+        @media (max-width: 1439px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1150px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       height: inherit;
@@ -383,10 +427,6 @@
       }
 
       transition: transform 300ms;
-    }
-
-    :global article {
-      width: var(--article-width);
     }
 
     .pagination {

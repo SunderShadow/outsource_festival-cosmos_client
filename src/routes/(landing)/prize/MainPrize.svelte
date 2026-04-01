@@ -1,42 +1,20 @@
-<script>
-import Button from "$lib/components/Button/Button.svelte"
-
-import {desktopWidth} from "$lib/_env.js"
-import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
+<script lang="ts">
+  import Button from "$lib/components/Button/Button.svelte"
 </script>
-
-<svelte:head>
-  <link rel="preload" as="image" href={bgDesktop.img.src} fetchpriority="high" media="width > {desktopWidth}">
-</svelte:head>
 
 <section
     id="main_prize"
-    style:--bg-desktop="url('{bgDesktop.img.src}')"
 >
   <div class="content">
-    <div>
-      <h1>ГЛАВНЫЙ ПРИЗ</h1>
-      <p>
-        Главный приз фестиваля — поездка на космодром Байконур.<br>
-        <br>
-        Победитель увидит пилотируемый запуск космического корабля «Союз МС-29», который отправится к Международной космической станции.<br>
-        <br>
-        Это один из самых впечатляющих моментов современной космонавтики — старт ракеты и начало космической экспедиции.
-      </p>
-    </div>
-
-    <div>
-      <h2>СЛЕДУЮЩАЯ ОСТАНОВКА — БАЙКОНУР</h2>
-      <p>
-        Закажите фестивальный сет.<br>
-        Получите открытку с номером.<br>
-        Зарегистрируйте его на сайте.<br>
-        И, возможно, именно вы окажетесь на старте космического корабля.
-      </p>
-      <div class="btn_restaurants">
-        <Button href="/restaurants">Выбрать ресторан</Button>
-      </div>
-    </div>
+    <h2>ГЛАВНЫЙ ПРИЗ</h2>
+    <p>
+      Главный приз фестиваля — поездка на космодром Байконур.<br>
+      <br>
+      Победитель увидит пилотируемый запуск космического корабля «Союз МС-29», который отправится к Международной космической станции.<br>
+      <br>
+      Это один из самых впечатляющих моментов современной космонавтики — старт ракеты и начало космической экспедиции.
+    </p>
+    <div class="choose-restaurant"><Button white href="/restaurants#restaurants">Выбрать ресторан</Button></div>
   </div>
 </section>
 
@@ -44,60 +22,30 @@ import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
   @use "$lib/scss/mixins/scr";
 
   #main_prize {
-    @include scr.tablet-and-lower {
-      background: linear-gradient(180deg, rgba(247, 248, 248, 0) 0%, rgba(247, 248, 248, 0.6) 60px, #FFF 90px);
-
-      padding-top: 135px;
-      margin-top: 30px;
-      padding-bottom: 93px;
-    }
-
-    color: #1C212B;
-
-    h2 {
-      margin-top: 24px;
-    }
-
     .content {
-      max-width: 282px;
+      max-width: 262px;
       margin-left: auto;
       margin-right: auto;
 
+      text-align: center;
+
       @include scr.desktop {
-        display: flex;
-        justify-content: space-between;
-        gap: 44px;
-        color: #FFF;
-        max-width: 800px;
+        max-width: 395px;
         padding: 0 100px 0 150px;
         box-sizing: content-box;
-
-        > *:first-child {
-          width: 282px;
-
-          p {
-            color: #FFFFFFB2;
-          }
-        }
-
-        > *:last-child {
-          width: 352px;
-
-          p {
-            color: #FFFFFFB2;
-          }
-        }
       }
     }
   }
 
-  h1, h2 {
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: -3%;
+  .choose-restaurant {
+    margin-top: 16px;
   }
 
   h2 {
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -3%;
     line-height: 40px;
     margin: 0;
   }
@@ -114,14 +62,18 @@ import bgDesktop from "./assets/bg-desktop.png?enhanced&format=webp"
   }
 
   p {
+    margin-bottom: 0;
     margin-top: 20px;
+
     font-size: 13px;
     line-height: 16px;
-    margin-bottom: 0;
+
+    color: #FFFFFFB2;
 
     @include scr.desktop {
-      font-size: 13px;
       margin-bottom: 2em;
+
+      font-size: 13px;
     }
   }
 </style>

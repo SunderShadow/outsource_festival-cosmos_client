@@ -45,7 +45,7 @@
     <div class="divider"></div>
     <a href="/docs/personal-info-policy.pdf">Политика  по обработке персональных данных</a>
     <div class="divider"></div>
-    <a href="">Положение о конкурсе</a>
+    <a href="/docs/contest-info.pdf">Положение о конкурсе</a>
   </div>
 </section>
 

@@ -21,12 +21,12 @@
 
 html {
   background: #000;
-  scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
 }
 
 :root {
   font-family: "Manrope", sans-serif;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 }
 
 html, body {

@@ -13,7 +13,7 @@
     height: var(--scrollbar-height, 500px);
     width:  var(--scrollbar-width, max(5px, 100%));
 
-    background-color: #1C212B33;
+    background-color: var(--scrollbar-bg-color, #1C212B33);
     border-radius: 10em;
   }
 
@@ -25,7 +25,7 @@
 
     height: var(--scrollbar-thumb-height, 100px);
 
-    background-color: #1C212B;
+    background-color: var(--scrollbar-thumb-color, #1C212B);
     border-radius: 10em;
   }
 </style>

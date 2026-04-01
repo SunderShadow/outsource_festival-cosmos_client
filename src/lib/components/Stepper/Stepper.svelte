@@ -94,6 +94,7 @@
 
 <style lang="scss">
   @use "$lib/env";
+  @use "$lib/scss/mixins/scr";
 
   .stepper {
     position: relative;
@@ -118,14 +119,21 @@
 
     transform: translateX(calc(var(--step) * -116px));
 
-    @media (min-width: env.$desktop-width) {
+    @include scr.desktop {
       left: 5ex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      transform: translateY(calc(var(--step) * -116px));
+      transform: none;
+
+      :global .step.previous + .divider {
+        height: 5px;
+      }
     }
 
+    .divider {
+      transition: height 300ms;
+    }
     .divider:last-of-type {
       display: none;
     }

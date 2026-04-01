@@ -1,7 +1,7 @@
 <section id="first_in_cosmos">
   <h1>Первые в космосе</h1>
   <p>
-    Национальный гастрономический фестиваль 1–30 апреля 2026<br>
+    Даты проведения национального гастрономического фестиваля 1–30 апреля 2026<br>
     <br>
     70 ресторанов в 18 городах России создают специальные гастрономические сеты, вдохновлённые космосом и историей российской космонавтики.<br>
     <br>
@@ -29,18 +29,18 @@
 
   p {
     font-size: 13px;
-    color: var(--text-color-bright-bg);
+    color: #828A9D;
     line-height: 16px;
 
     margin: 14px 0 0;
+    text-transform: uppercase;
+
 
     @include scr.desktop {
       margin-bottom: 0;
 
-      color: #828A9D;
       font-size: 13px;
       line-height: 16px;
-      text-transform: uppercase;
     }
   }
 

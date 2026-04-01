@@ -26,7 +26,7 @@
         </svg>
       </button>
     {/if}
-    <h2><a href="/news/{news.slug}">Consequat</a></h2>
+    <h2><a href="/news/{news.slug}">{news.title}</a></h2>
     <time>{dateFormatter.format(new Date(news.created_at))}</time>
     <div class="content">
       <p class="excerpt" transition:slide>{news.excerpt}</p>
