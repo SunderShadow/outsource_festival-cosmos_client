@@ -91,7 +91,13 @@
           return
         }
 
-        canGoNextPage = Math.ceil(e.scroll) === lenis.limit;
+        if (page.url.pathname === '/restaurants' && Math.ceil(e.scroll) === lenis.limit) {
+          setTimeout(() => {
+            canGoNextPage = Math.ceil(e.scroll) === lenis.limit
+          }, 500)
+        } else {
+          canGoNextPage = Math.ceil(e.scroll) === lenis.limit;
+        }
         canGoPrevPage = Math.ceil(e.scroll) === 0;
       })
     }

@@ -388,6 +388,7 @@
         right: 0;
         z-index: 1;
       }
+
       &::before {
         content: '';
         background: linear-gradient(#00000040,#000000aa);
@@ -399,6 +400,7 @@
         right: 0;
         z-index: 1;
       }
+
       .header, .contacts, p {
         position: relative;
         z-index: 2;
