@@ -83,7 +83,7 @@
     }
 
     @include scr.desktop {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
   }
 
