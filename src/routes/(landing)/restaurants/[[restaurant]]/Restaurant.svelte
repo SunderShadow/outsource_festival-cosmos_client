@@ -1,12 +1,23 @@
 <script lang="ts">
+  import 'photoswipe/dist/photoswipe.css'
+  // Svelte
+  import {getContext, onDestroy, onMount} from "svelte"
   import {slide} from "svelte/transition"
-  import {onDestroy, onMount} from "svelte"
+
+  // $app
+  import {browser} from "$app/environment"
   import {goto} from "$app/navigation"
 
+  // Img source
   import restaurantEnhanced from "./assets/restaurant.png?enhanced&format=webp&quality=100"
-  import client_type from "$lib/store/client_type"
+
+  import PhotoSwipe from 'photoswipe';
+
+  // Components
   import Button from "$lib/components/Button/Button.svelte"
-  import {browser} from "$app/environment"
+
+  // Storage
+  import client_type from "$lib/store/client_type"
 
   let {
     restaurant
@@ -47,6 +58,54 @@
     closeDragEl.addEventListener('touchend', stopDrag)
   }
 
+  let layoutConfig = getContext('layout-config')
+  const photoSwipeSource = restaurant.meals.map(it => ({
+    src: it.thumbnails.full,
+    width: 1000,
+    height: 1000,
+    thumbnail: it
+  }))
+
+  function openPhotoSwipe(index: number) {
+    layoutConfig.noChangeOnSwipe = true
+    const photoSwipe = new PhotoSwipe({
+      index,
+      dataSource: photoSwipeSource,
+    })
+    photoSwipe.on('uiRegister', () => {
+      photoSwipe.ui.registerElement({
+        name: 'title',
+        isButton: false,
+        appendTo: 'root',
+        html: '',
+        onInit(element, pswp) {
+          pswp.on('change', () => {
+            const thumbnail = photoSwipe.currSlide.data.thumbnail
+            element.innerHTML = thumbnail.name
+          })
+        },
+      })
+
+      photoSwipe.ui.registerElement({
+        name: 'description',
+        isButton: false,
+        appendTo: 'root',
+        html: '',
+        onInit(element, pswp) {
+          pswp.on('change', () => {
+            const thumbnail = photoSwipe.currSlide.data.thumbnail
+            element.innerHTML = thumbnail.description
+          })
+        },
+      })
+    })
+
+    photoSwipe.on('close', () => {
+      layoutConfig.noChangeOnSwipe = false
+    })
+
+    photoSwipe.init()
+  }
   onMount(() => {
     if (browser) {
       document.body.style.setProperty('height', '100svh')
@@ -164,10 +223,10 @@
     {#if restaurant.meals.length > 0}
       <section id="meals">
         {#each restaurant.meals as meal, i}
-          <article>
+          <article onclick={() => {openPhotoSwipe(i)}}>
             <img src={meal.thumbnails.card} alt="">
             <div class="content">
-              <h3><a href={$client_type.isMobile ? '#meal_preview' :''} onclick={() => {selectedMeal = restaurant.meals[i]}}>{meal.name}</a></h3>
+              <h3>{meal.name}</h3>
               <span class="subtitle">{meal.chef_name}</span>
             </div>
           </article>
@@ -207,6 +266,31 @@
       height: 100vh;
       background-color: #F1F2F2;
     }
+  }
+
+  :global .pswp__title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    color: #FFF;
+    transform: translateX(-50%);
+    font-family: Manrope, sans-serif;
+  }
+
+  :global .pswp__description {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    color: #FFF;
+    transform: translateX(-50%);
+
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+    font-family: Manrope, sans-serif;
+
+    width: 100%;
+    max-width: 1000px;
   }
 
   .drag-area {
@@ -701,19 +785,6 @@
     article {
       position: relative;
       aspect-ratio: 1 / 1;
-
-      &::before {
-        content: '';
-        border-radius: 20px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 2;
-
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
-      }
 
       img {
         position: absolute;
