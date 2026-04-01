@@ -31,7 +31,7 @@
             <path d="M3.1927 4.18696C3.72702 4.18696 4.16017 3.75078 4.16017 3.21272C4.16017 2.67467 3.72702 2.23849 3.1927 2.23849C2.65838 2.23849 2.22523 2.67467 2.22523 3.21272C2.22523 3.75078 2.65838 4.18696 3.1927 4.18696Z" stroke="black" stroke-width="0.580483" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <span class="info">{article.location}</span>
+        <span class="info">{article.city}</span>
       </div>
     </div>
   </div>
